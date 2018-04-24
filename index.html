@@ -30,12 +30,12 @@ class: center, middle
 * Einführung
 * Pfeil Funktionen
 * Erweiterte Objektliterale
-* Vorlage Strings
 * Destrukturierung
 * Standart Parameter
-* Rest + Spread
 * Let + Const
 * Promises
+* Rest + Spread
+* Vorlage Strings
 
 ---
 
@@ -50,7 +50,7 @@ Hier gehen wir auf einige der vielen neuen features ein.
 
 # Pfeil Funktionen
 
-Pfeile sind eine Funktion mit der Syntax '=>'. Sie sind syntaktisch ähnlich wie die entsprechenden
+Pfeile sind eine Funktion mit der Syntax **=>**. Sie sind syntaktisch ähnlich wie die entsprechenden
 Funktionen in C#, Java 8 und CoffeeScript. Sie unterstützen sowohl Anweisungsblockkörper
 als auch Ausdruckskörper, die den Wert des Ausdrucks zurückgeben.
 
@@ -72,7 +72,7 @@ name: eo
 
 # Erweiterte Objektliterale
 
-In es6 wurden Objektliterale erweitert um:
+In ES6 wurden Objektliterale erweitert um:
   1. Eigenschaft:Wert Kurzchreibweise
   2. Methoden Kurzschreibweise
   3. Möglichkeit berechnete Eigenschaftsnamen zu verwenden
@@ -103,9 +103,9 @@ template: eo
 ```javascript
 //Methoden Kurzschreibweise
 const anObject = {
-  // es6 way
+  // ES6 way
   aShorthandMethod (arg1, arg2) {},
-  // es5
+  // ES5
   aLonghandMethod: function (arg1, arg2) {},
 }
 ```
@@ -151,11 +151,11 @@ const Zell = {
   lastName: 'Liew'
 }
 
-//es5
+//ES5
 let firstName = Zell.firstName // Zell
 let lastName = Zell.lastName // Liew
 
-//es6
+//ES6
 let { firstName, lastName } = Zell
 
 console.log(firstName) // Zell
@@ -194,8 +194,8 @@ announcePlayer('Stephen', 'Curry', 'Golden State Warriors')
 
 # Let + Const
 
-Blockbedingter Geltungsbereich für Bindungskonstrukte. let ist die neue var. const ist eine
-Einzelzuordnung und ist immutable.
+Blockbedingter Geltungsbereich für Bindungskonstrukte. **let** ist die neue **var**.
+**const** ist eine Einzelzuordnung und ist immutable.
 
 ```javascript
 function f() {
@@ -212,6 +212,7 @@ function f() {
   }
 }
 ```
+
 ---
 
 #	Promises
@@ -248,10 +249,10 @@ doFirst.then(doSecond);
 
 # Rest + Spread
 
-Mit 'rest' bekommt man eine komma-separierte Liste und packt sie in ein
+Mit **rest** bekommt man eine kommaseparierte Liste und packt sie in ein
 Array.
 
-'spread' macht das Gegenteil, man bekommt ein Array und es wird eine komma-separierte
+**spread** macht das Gegenteil, man bekommt ein Array und es wird eine kommaseparierte
 Liste erstellt.
 
 ```javascript
@@ -273,8 +274,8 @@ console.log('one', 'two', 'three') // one two three
 
 # Vorlage Strings
 
-```template strings``` sind toll für den Aufbau von Strings. Dies ist vergleichbar mit
-Stringinterpolationsfunktionen in Perl, Python und mehr. Optional kann ein ```tag``` hinzugefügt
+**template strings** sind toll für den Aufbau von Strings. Dies ist vergleichbar mit
+Stringinterpolationsfunktionen in Perl, Python und mehr. Optional kann ein **tag** hinzugefügt
 werden, um die Stringkonstruktion anzupassen, um Injektionsangriffe zu vermeiden oder aus
 Stringinhalten übergeordnete Datenstrukturen aufzubauen.
 
