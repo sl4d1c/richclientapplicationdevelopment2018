@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
   <head>
     <title>ES6 Vorstellung</title>
@@ -7,7 +7,6 @@
       @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
       @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
       @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
-
       body { font-family: 'Droid Serif'; }
       h1, h2, h3 {
         font-family: 'Yanone Kaffeesatz';
@@ -37,6 +36,7 @@ class: center, middle
 * React Componenten und Styles
 * Event Handlers in React
 * Behandlung von Speicherlöchern
+* Klassen und state
 * Klassen und this
 * DOM Manipulation mit refs
 * Formulare mit React
@@ -143,7 +143,41 @@ Im folgenden wird auf einge Features von React eingegangen.
 
 ---
 
+# .center[Klassen und state]
+
+* Um state nutzen zu können muss man von React.Conponent erben
+* state ist eine Möglichkeit die UI dynamisch zu aktualisieren
+* state sollte direkt mit setState gesetzt werden 
+	* Direkten Zugriff auf state vermeiden
+
+```javascript
+state = {lapse: 0, running: false}
+```
+
+.center[Initiierung]
+
+```javascript
+handleClick = () => {
+	this.setState({lapse: 10, running: true});
+}
+```
+
+.center[Aktualisierung]
+
+---
+
 # .center[Behandlung von Speicherlöchern]
+
+- Speicherlöcher können entstehen wenn man Komponenten nicht mehr rendert aber weiter berechnen lässt
+- componentWillUnmount kann Speicherlöcher vermeiden
+
+```javascript
+componentWillUnmount() {
+	clearInterval(this.timer);
+}
+```
+- clearInterval ist die Function die wir normalerweise für den cleanup nutzen
+- hier wird unsere cleanup Funktion in componentWillUnmount aufgerufen
 
 ---
 
