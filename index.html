@@ -211,12 +211,10 @@ class NameForm extends React.Component {
         event.preventDefault() //prevents page reload on submit
         //getting the form
         console.log({target: event.target})
-
         //different ways of getting values of the form
         console.log(event.target[0].value)
         console.log(event.target.elements.username.value)
         console.log(this.inputNode.value)
-
     }
     render(){
         return(
@@ -248,8 +246,6 @@ handleChange = (event) => {
     })
 }
 
-
-//...
 //set and initialize the error variable
 state = {error: this.props.getErrorMessage('')}
 render(){
@@ -267,7 +263,6 @@ render(){
         </form>
     )
 }
-//...
 ```
 
 ---
@@ -291,7 +286,6 @@ const {commaSeperated} = this.state
 //... inside of form
 <input type="text" value={commaSeperated} onChange={this.handleChange} />
 ```
-
 
 ---
 
