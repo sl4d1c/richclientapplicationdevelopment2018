@@ -38,7 +38,7 @@ class: center, middle
 * Behandlung von Speicherlöchern
 * Klassen und state
 * Klassen und this
-* DOM Manipulation mit refs
+* DOM Manipulation mit ref
 * Formulare mit React
 * Dynamische Formulare
 * Aktualisiren von Werten in Formularen
@@ -176,6 +176,7 @@ componentWillUnmount() {
 	clearInterval(this.timer);
 }
 ```
+
 - clearInterval ist die Function die wir normalerweise für den cleanup nutzen
 - hier wird unsere cleanup Funktion in componentWillUnmount aufgerufen
 
@@ -183,33 +184,160 @@ componentWillUnmount() {
 
 # .center[Klassen und this]
 
+Wird eigentlich nicht gebraucht da das nur ne wiederholung der Arrow functions ist
+
 ---
 
-# .center[DOM Manipulation mit refs]
+# .center[DOM Manipulation mit ref]
+
+- Um den DOM zu manipulieren muss man ein ref auf das gerenderte Element übergebene
+	- Dadurch bekommt man eine Referenz auf den DOM-Knoten 
+
+
+```javascript
+<div ref={node => (this.rootNode = node)} />
+```
 
 ---
 
 # .center[Formulare mit React]
 
+- Beim absenden eines Formulars wird die Seite normalerweise neu geladen
+	- preventDefault verhindert diese Standartaktion
+
+```javascript
+class NameForm extends React.Component {
+    handleSubmit = event => {
+        event.preventDefault() //prevents page reload on submit
+        //getting the form
+        console.log({target: event.target})
+
+        //different ways of getting values of the form
+        console.log(event.target[0].value)
+        console.log(event.target.elements.username.value)
+        console.log(this.inputNode.value)
+
+    }
+    render(){
+        return(
+            <form onSubmit={this.handleSubmit}>
+                <label>
+                    Name:
+                    <input type="text" name="username" ref={node => this.inputNode = node}/>
+                </label>
+                <button type="submit">Submit</button>
+            </form>
+        )
+    }
+}
+```
+
 ---
 
 # .center[Dynamische Formulare]
+
+- Verändern der Formulare wenn bestimmte bedingungen getroffen wurden
+- Veränderungen werden mit state gespeichert und geprüft
+- 
+
+```javascript
+handleChange = (event) => {
+    const {value} = event.target
+    this.setState({
+        error: this.props.getErrorMessage(value),
+    })
+}
+
+
+//...
+//set and initialize the error variable
+state = {error: this.props.getErrorMessage('')}
+render(){
+    const {error} = this.state
+    return(
+        <form onSubmit={this.handleSubmit}>
+            <label>
+                Name:
+                <input type="text" onChange={this.handleChange} name="username"/>
+            </label>
+            //display error message if conditions are not met
+            {error ? (<div>{error}</div>) : null}
+            //disable button if errors exist
+            <button disabled={Boolean(error)} type="submit">Submit</button>
+        </form>
+    )
+}
+//...
+```
 
 ---
 
 # .center[Aktualisiren von Werten in Formularen]
 
+- Erstellen von Default Variablen mit state durch das setzen eines Wertes
+- Problem: Der Wert wird immer wieder übeschrieben
+- Um das zu vermeiden gibt es das onChange Attribut
+	- Nutzen vom handleChange um die state und somit den Wert im Feld zu aktualisieren 	
+
+```javascript
+state = {commaSeperated='Mensch'}
+handleChange = event => {
+    this.setState({commaSeperated: event.target.value})
+}
+
+//... inside render
+const {commaSeperated} = this.state
+
+//... inside of form
+<input type="text" value={commaSeperated} onChange={this.handleChange} />
+```
+
+
 ---
 
 # .center[Key Zuordnung von Key-Values]
 
+- Keys sind wichtig um beim ändern eines Array die Elemente richtig einordnen zu können
+	- Keys müssen einzigartig sein 
+
+```javascript
+<div key={item.id}>{item.valaue}<div/>
+```
+
 ---
 
 # .center[HTTP Anfragen mit React]
+- Nutzen der Funktion componentDidMount 
+- In componentDidMount muss dann eine lib wie axios genutzt werden für den request
+	- Es müssen dann sachen wie url, method, data übergeben werden 
+
+```javascript
+componentDidMount() {
+	axios({
+		url: 'https://api.github.com/graphql',
+		method: 'post',
+		data: {
+			query: `{
+				user(login: "${this.props.username}") {
+				company
+			}
+		}`
+	},
+	headers: {
+		Authorization: `Kein Token zusehen`,
+	},
+}
+```
 
 ---
 
 # .center[Build and Deploy]
+
+- codesandbox.io
+	- Online Editor der es erlaubt die Entwicklung seiner React Anwendung im Browser zu machen
+	- Man kann sein Projekt auch als .zip herunterladen
+- netlify.com 
+	- Möglichkeit seine Website direkt hochzuladen und über netlify zu nutzen
 
 ---
 
