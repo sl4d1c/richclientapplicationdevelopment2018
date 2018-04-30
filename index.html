@@ -245,8 +245,6 @@ handleChange = (event) => {
         error: this.props.getErrorMessage(value),
     })
 }
-
-//set and initialize the error variable
 state = {error: this.props.getErrorMessage('')}
 render(){
     const {error} = this.state
@@ -256,9 +254,7 @@ render(){
                 Name:
                 <input type="text" onChange={this.handleChange} name="username"/>
             </label>
-            //display error message if conditions are not met
             {error ? (<div>{error}</div>) : null}
-            //disable button if errors exist
             <button disabled={Boolean(error)} type="submit">Submit</button>
         </form>
     )
