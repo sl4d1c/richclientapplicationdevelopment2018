@@ -113,41 +113,221 @@ Im folgenden wird auf einge Features von React eingegangen.
 
 # .center[Erstellen von HTML-Elementen mit React]
 
+In React kann man HTML-Elemente erstellen, indem man den Elementnamen und ein
+Objekt erstellt
+
+```javascript
+<div> id="root" </div>
+<script src="react">
+const rootElement = document.getElementById('root')
+const element = React.createElement('div', {
+  className: 'container',
+  chlidren: 'Hello World',
+})
+ReactDOM.render(element, rootElement)
+</script>
+```
 ---
 
 # .center[JSX]
 
+Mit dem "babel-package" kann man JSX zu React übersetzen.
+"<" leiten JSX ein und darin, mit "{}" kann man dann JavaScript einleiten.
+Damit hat man in einem Element html und JS-Logik
+
+```javascript
+<script src:"babel-package">
+<script type="text/babel">
+const rootElement = document.getElementById('root')
+const content = 'hello world'
+const myClassName = 'container'
+const props = {
+  className: 'container',
+  children: 'hi'
+}
+const element = <div {...props}>Überschreibung</div> //jsx html und js logik
+ReactDOM.render(element, rootElement)
+</script>
+```
 ---
 
 # .center[Wiederverwertbare React Komponenten]
 
+Man kann mit JSX in html style mehrere Kinder des gleichen Elements erzeugen
+
+```javascript
+const Message = props => <div>{props.chlidren}</div>
+const element = (                     // Ausgabe
+<div className="container">           //<div class="container"
+  <Message>                           //  <div>
+    Hello World                       //     "Hello World"
+    <Message>Goodbye World</Message>  //     <div>Goodbye World</div>
+  </Message>                          //  </div>
+</div>                                //</div>
+)
+```
 ---
 
 # .center[PropTypes]
 
+Mit PropTypes gibt es die Möglichkeit Typ Überprüfungen zu machen und so zu
+kontrollieren was eingegeben wurde. Es gibt ein Package dafür welches jedoch
+nur in ReactDevelopment Package vorhanden ist, da es für Produktivsysteme zu
+langsam ist.
+
+```javascript
+function SayHello(props){
+return (
+<div>
+  Hello {props.firstName} {props.lastName}!
+</div>
+)
+}
+SayHello.propTypes = {
+  firstName: PropTypes.string.isRequired,   //Error wenn falscher Typ
+  lastName: PropTypes.string,   //kein Error weil default nicht required
+}
+```
 ---
 
 # .center[Bedingtes Rendern von Komponenten]
 
+Es ist möglich Elemente bedingt zu rendern. Z.B wenn es eine Message gibt, soll sie
+sie angezeigt werden, und wenn es keine gibt eine Fehlermeldung oder etwas anders.
+
+```javascript
+function Message({message}) {
+  return (
+    <div>
+      {message ? (
+        <div>{message}</div>
+      ) : (
+        <div>No Message</div>
+      )}
+    </div>
+  )}
+ReactDOM.render(
+  <Message message={null}/>,
+  document.getElementById('root'),
+)
+```
 ---
 
 # .center[Neu Rendern]
 
+React rendert nur die veränderten Elemente neu, zb. bei einer Funktion, welche
+jede Sekunde neu aufgrufen wird, wird nur die Zeit neugerendert.
+Das heißt, wenn man ein input Element fokusiert, geht der Fokus nicht verloren.
+Anders als bei beim regulären Html, wo bei jedem Funktionsaufruf die komplette
+DOM Struktur neu gebaut wird.
+
+```javascript
+function tick() {
+  const time = new Date().toLocaleTimeString()
+  const element = (
+    <div>
+      It is
+      <input value={time}/>
+    </div>
+  )
+  ReactDOM.render(element, rootElement)
+}
+tick()
+setIntervall(tick, 1000)
+```
 ---
 
 # .center[React Componenten und Styles]
 
----
+Styles können als Objekte behandelt werden, dass ermöglicht es einfach damit zu
+arbeiten. Es gibt Bibliotheken welche einige der Schwierigkeiten beim bearbeiten
+der Styles lösen (styled components; emotion; glamorous)
 
+```javascript
+function Box({style, size, className = '', ...rest}) {
+  return (
+    <div
+      className={`box ${className}`}
+      style={{paddingLeft: 20, ...style}}
+      {...rest}
+    />
+  )
+}
+const element = (
+  <div>
+    <Box
+      size="small"
+      style={{background: 'lightblue'}}
+    >
+    small box
+  </div>
+)
+```
+---
+name: events
 # .center[Event Handlers in React]
 
+Mittels des Event Handlers, kann man auf bestimmte Events wie "onClick" reagieren
+und Elemente neu Rendern sobald das Event ausgelöst wurde.
+
+---
+template: events
+
+```javascript
+function App() {
+  return {
+    <div>
+      <p>
+        There have been {state.eventCount} events
+      </p>
+      <p>
+        <button
+          onClick={increment} // event ruft function increment auf
+        >
+          btn
+        </button>
+      </p>
+      <p>U typed: {state.username}</p>
+      <p>
+        <input onChange={updateUserName}/>  // wie onClick
+      </p>
+    </div>
+  }
+}
+```
+
+---
+template: events
+
+```javascript
+function updateUserName(event) {
+  setState({
+    username: event.target.value,
+  })
+}
+function increment() {
+  setState({
+    eventCount: state.eventCount + 1,
+  })
+}
+function setState(newState) {
+  Object.assign(state, newState)
+  renderApp()
+}
+function renderApp() {
+  ReactDOM.render(
+    <App/>
+  )
+}
+renderApp()
+```
 ---
 
 # .center[Klassen und state]
 
 * Um state nutzen zu können muss man von React.Conponent erben
 * state ist eine Möglichkeit die UI dynamisch zu aktualisieren
-* state sollte direkt mit setState gesetzt werden 
+* state sollte direkt mit setState gesetzt werden
 	* Direkten Zugriff auf state vermeiden
 
 ```javascript
@@ -191,7 +371,7 @@ Wird eigentlich nicht gebraucht da das nur ne wiederholung der Arrow functions i
 # .center[DOM Manipulation mit ref]
 
 - Um den DOM zu manipulieren muss man ein ref auf das gerenderte Element übergebene
-	- Dadurch bekommt man eine Referenz auf den DOM-Knoten 
+	- Dadurch bekommt man eine Referenz auf den DOM-Knoten
 
 
 ```javascript
@@ -267,7 +447,7 @@ render(){
 - Erstellen von Default Variablen mit state durch das setzen eines Wertes
 - Problem: Der Wert wird immer wieder übeschrieben
 - Um das zu vermeiden gibt es das onChange Attribut
-	- Nutzen vom handleChange um die state und somit den Wert im Feld zu aktualisieren 	
+	- Nutzen vom handleChange um die state und somit den Wert im Feld zu aktualisieren
 
 ```javascript
 state = {commaSeperated='Mensch'}
@@ -287,7 +467,7 @@ const {commaSeperated} = this.state
 # .center[Key Zuordnung von Key-Values]
 
 - Keys sind wichtig um beim ändern eines Array die Elemente richtig einordnen zu können
-	- Keys müssen einzigartig sein 
+	- Keys müssen einzigartig sein
 
 ```javascript
 <div key={item.id}>{item.valaue}<div/>
@@ -296,9 +476,9 @@ const {commaSeperated} = this.state
 ---
 
 # .center[HTTP Anfragen mit React]
-- Nutzen der Funktion componentDidMount 
+- Nutzen der Funktion componentDidMount
 - In componentDidMount muss dann eine lib wie axios genutzt werden für den request
-	- Es müssen dann sachen wie url, method, data übergeben werden 
+	- Es müssen dann sachen wie url, method, data übergeben werden
 
 ```javascript
 componentDidMount() {
@@ -325,7 +505,7 @@ componentDidMount() {
 - codesandbox.io
 	- Online Editor der es erlaubt die Entwicklung seiner React Anwendung im Browser zu machen
 	- Man kann sein Projekt auch als .zip herunterladen
-- netlify.com 
+- netlify.com
 	- Möglichkeit seine Website direkt hochzuladen und über netlify zu nutzen
 
 ---
@@ -333,6 +513,7 @@ componentDidMount() {
 class: center, middle
 
 # Vielen Dank für die Aufmerksamkeit
+(Artem Kul'bashny und Slavko Dick)
 
     </textarea>
     <script src="https://remarkjs.com/downloads/remark-latest.min.js">
