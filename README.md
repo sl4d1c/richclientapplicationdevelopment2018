@@ -5,7 +5,7 @@
 
 This repo is for the course rich client application development 2018
 
-# Projektbeschreibung
+# Project description
 Within the scope of our project we want to build an application for the creation of surveys. Users
 should be given the opportunity to create or answer a survey. To create the survey, you can choose
 from a predefined pool of elements. The poll creator can individually select elements from the pool
