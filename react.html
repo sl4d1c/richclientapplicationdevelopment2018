@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ES6 Vorstellung</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+class: center, middle
+
+# React
+
+---
+
+# .center[Agenda]
+
+* Einführung
+* Erstellen von HTML-Elementen mit React
+* JSX
+* Wiederverwertbare React Komponenten
+* PropTypes
+* Bedingtes Rendern von Komponenten
+* Neu Rendern
+* React Componenten und Styles
+* Event Handlers in React
+* Behandlung von Speicherlöchern
+* Klassen und state
+* DOM Manipulation mit ref
+* Formulare mit React
+* Dynamische Formulare
+* Aktualisiren von Werten in Formularen
+* Key Zuordnung von Key-Values
+* HTTP Anfragen mit React
+* Build and Deploy
+
+---
+name: intro
+
+# .center[Einführung]
+
+React ist eine JavaScript-Softwarebibliothek, die ein Grundgerüst für die Ausgabe von
+User-Interface-Komponenten von Webseiten zur Verfügung stellt (Webframework).
+
+---
+template: intro
+
+.center[**Geschichte**]
+
+* 2011 von Jordan Walke (Facebook Softwareingenieur) entwickelt
+* 2011 für Facebook Newsfeed
+* 2012 für Instagram
+* 2013 open source
+* 2014 Apache Lizenz zu BSD Lizenz + Klausel Widerruf
+* 2015 Änderung der Klausel => trotzdem Streit
+* 2017 Apache verbietet Zusatzklauseln Facebook wechselt zu MIT Lizenz
+
+
+---
+template: intro
+
+.center[**Kernkonzepte**]
+
+* Unidriektionaler Datenfluss
+* Virtual DOM und DOM-Diffing
+* Javascsript syntax extension (JSX)
+
+---
+template: intro
+
+.center[**Unidiriketionale Datenfluss**]
+
+* kein komplexes Event Handling; Daten über statische Eigenschaften
+* Komponente kann übergebene Eigenschaften in diesem Modell nicht abändern
+* Eigenschaften können mittels Callback-Funktionen übergeordneten Komponenten
+
+---
+template: intro
+
+.center[**Virtual DOM und DOM-Diffin**]
+
+* Kernidee: jeder Anwendungsbaum, der übergeordneten betroffenen Komponente, bei jeder
+  Änderung neu gebaut
+* performanceintensiv: Konzept des "Virtual DOM"
+* "DOM-Diffing" => selektives Aktualisieren des DOM, durch Vergleich geändert und nicht
+geändert
+
+---
+template: intro
+
+.center[**JavaScript syntax extension (JSX)**]
+
+* JSX erlaubt JS-Logik, HTML und CSS in eine React-Komponente zu kapseln => modulare
+Nutzung in Web-Apps
+---
+template: intro
+
+Im folgenden wird auf einge Features von React eingegangen.
+
+---
+
+# .center[Erstellen von HTML-Elementen mit React]
+
+In React kann man HTML-Elemente erstellen, indem man den Elementnamen und ein
+Objekt erstellt
+
+```javascript
+<div> id="root" </div>
+<script src="react">
+const rootElement = document.getElementById('root')
+const element = React.createElement('div', {
+  className: 'container',
+  chlidren: 'Hello World',
+})
+ReactDOM.render(element, rootElement)
+</script>
+```
+---
+
+# .center[JSX]
+
+Mit dem "babel-package" kann man JSX zu React übersetzen.
+"<" leiten JSX ein und darin, mit "{}" kann man dann JavaScript einleiten.
+Damit hat man in einem Element html und JS-Logik
+
+```javascript
+<script src:"babel-package">
+<script type="text/babel">
+const rootElement = document.getElementById('root')
+const content = 'hello world'
+const myClassName = 'container'
+const props = {
+  className: 'container',
+  children: 'hi'
+}
+const element = <div {...props}>Überschreibung</div> //jsx html und js logik
+ReactDOM.render(element, rootElement)
+</script>
+```
+---
+
+# .center[Wiederverwertbare React Komponenten]
+
+Man kann mit JSX in html style mehrere Kinder des gleichen Elements erzeugen
+
+```javascript
+const Message = props => <div>{props.chlidren}</div>
+const element = (                     // Ausgabe
+<div className="container">           //<div class="container"
+  <Message>                           //  <div>
+    Hello World                       //     "Hello World"
+    <Message>Goodbye World</Message>  //     <div>Goodbye World</div>
+  </Message>                          //  </div>
+</div>                                //</div>
+)
+```
+---
+
+# .center[PropTypes]
+
+Mit PropTypes gibt es die Möglichkeit Typ Überprüfungen zu machen und so zu
+kontrollieren was eingegeben wurde. Es gibt ein Package dafür welches jedoch
+nur in ReactDevelopment Package vorhanden ist, da es für Produktivsysteme zu
+langsam ist.
+
+```javascript
+function SayHello(props){
+return (
+<div>
+  Hello {props.firstName} {props.lastName}!
+</div>
+)
+}
+SayHello.propTypes = {
+  firstName: PropTypes.string.isRequired,   //Error wenn falscher Typ
+  lastName: PropTypes.string,   //kein Error weil default nicht required
+}
+```
+---
+
+# .center[Bedingtes Rendern von Komponenten]
+
+Es ist möglich Elemente bedingt zu rendern. Z.B wenn es eine Message gibt, soll sie
+sie angezeigt werden, und wenn es keine gibt eine Fehlermeldung oder etwas anders.
+
+```javascript
+function Message({message}) {
+  return (
+    <div>
+      {message ? (
+        <div>{message}</div>
+      ) : (
+        <div>No Message</div>
+      )}
+    </div>
+  )}
+ReactDOM.render(
+  <Message message={null}/>,
+  document.getElementById('root'),
+)
+```
+---
+
+# .center[Neu Rendern]
+
+React rendert nur die veränderten Elemente neu, zb. bei einer Funktion, welche
+jede Sekunde neu aufgrufen wird, wird nur die Zeit neugerendert.
+Das heißt, wenn man ein input Element fokusiert, geht der Fokus nicht verloren.
+Anders als bei beim regulären Html, wo bei jedem Funktionsaufruf die komplette
+DOM Struktur neu gebaut wird.
+
+```javascript
+function tick() {
+  const time = new Date().toLocaleTimeString()
+  const element = (
+    <div>
+      It is
+      <input value={time}/>
+    </div>
+  )
+  ReactDOM.render(element, rootElement)
+}
+tick()
+setIntervall(tick, 1000)
+```
+---
+
+# .center[React Componenten und Styles]
+
+Styles können als Objekte behandelt werden, dass ermöglicht es einfach damit zu
+arbeiten. Es gibt Bibliotheken welche einige der Schwierigkeiten beim bearbeiten
+der Styles lösen (styled components; emotion; glamorous)
+
+```javascript
+function Box({style, size, className = '', ...rest}) {
+  return (
+    <div
+      className={`box ${className}`}
+      style={{paddingLeft: 20, ...style}}
+      {...rest}
+    />
+  )
+}
+const element = (
+  <div>
+    <Box
+      size="small"
+      style={{background: 'lightblue'}}
+    >
+    small box
+  </div>
+)
+```
+---
+name: events
+# .center[Event Handlers in React]
+
+Mittels des Event Handlers, kann man auf bestimmte Events wie "onClick" reagieren
+und Elemente neu Rendern sobald das Event ausgelöst wurde.
+
+---
+template: events
+
+```javascript
+function App() {
+  return {
+    <div>
+      <p>
+        There have been {state.eventCount} events
+      </p>
+      <p>
+        <button
+          onClick={increment} // event ruft function increment auf
+        >
+          btn
+        </button>
+      </p>
+      <p>U typed: {state.username}</p>
+      <p>
+        <input onChange={updateUserName}/>  // wie onClick
+      </p>
+    </div>
+  }
+}
+```
+
+---
+template: events
+
+```javascript
+function updateUserName(event) {
+  setState({
+    username: event.target.value,
+  })
+}
+function increment() {
+  setState({
+    eventCount: state.eventCount + 1,
+  })
+}
+function setState(newState) {
+  Object.assign(state, newState)
+  renderApp()
+}
+function renderApp() {
+  ReactDOM.render(
+    <App/>
+  )
+}
+renderApp()
+```
+---
+
+# .center[Klassen und state]
+
+* Um state nutzen zu können muss man von React.Conponent erben
+* state ist eine Möglichkeit die UI dynamisch zu aktualisieren
+* state sollte direkt mit setState gesetzt werden
+	* Direkten Zugriff auf state vermeiden
+
+```javascript
+state = {lapse: 0, running: false}
+```
+
+.center[Initiierung]
+
+```javascript
+handleClick = () => {
+	this.setState({lapse: 10, running: true});
+}
+```
+
+.center[Aktualisierung]
+
+---
+
+# .center[Behandlung von Speicherlöchern]
+
+- Speicherlöcher können entstehen wenn man Komponenten nicht mehr rendert aber weiter berechnen lässt
+- componentWillUnmount kann Speicherlöcher vermeiden
+
+```javascript
+componentWillUnmount() {
+	clearInterval(this.timer);
+}
+```
+
+- clearInterval ist die Function die wir normalerweise für den cleanup nutzen
+- hier wird unsere cleanup Funktion in componentWillUnmount aufgerufen
+
+---
+
+# .center[DOM Manipulation mit ref]
+
+- Um den DOM zu manipulieren muss man ein ref auf das gerenderte Element übergebene
+	- Dadurch bekommt man eine Referenz auf den DOM-Knoten
+
+
+```javascript
+<div ref={node => (this.rootNode = node)} />
+```
+
+---
+
+# .center[Formulare mit React]
+
+- Beim absenden eines Formulars wird die Seite normalerweise neu geladen
+	- preventDefault verhindert diese Standartaktion
+
+```javascript
+class NameForm extends React.Component {
+    handleSubmit = event => {
+        event.preventDefault() //prevents page reload on submit
+        //getting the form
+        console.log({target: event.target})
+        //different ways of getting values of the form
+        console.log(event.target[0].value)
+        console.log(event.target.elements.username.value)
+        console.log(this.inputNode.value)
+    }
+    render(){
+        return(
+            <form onSubmit={this.handleSubmit}>
+                <label>
+                    Name:
+                    <input type="text" name="username" ref={node => this.inputNode = node}/>
+                </label>
+                <button type="submit">Submit</button>
+            </form>
+        )
+    }
+}
+```
+
+---
+
+# .center[Dynamische Formulare]
+
+- Verändern der Formulare wenn bestimmte bedingungen getroffen wurden
+- Veränderungen werden mit state gespeichert und geprüft
+
+```javascript
+handleChange = (event) => {
+    const {value} = event.target
+    this.setState({
+        error: this.props.getErrorMessage(value),
+    })
+}
+state = {error: this.props.getErrorMessage('')}
+render(){
+    const {error} = this.state
+    return(
+        <form onSubmit={this.handleSubmit}>
+            <label>
+                Name:
+                <input type="text" onChange={this.handleChange} name="username"/>
+            </label>
+            {error ? (<div>{error}</div>) : null}
+            <button disabled={Boolean(error)} type="submit">Submit</button>
+        </form>
+    )
+}
+```
+
+---
+
+# .center[Aktualisiren von Werten in Formularen]
+
+- Erstellen von Default Variablen mit state durch das setzen eines Wertes
+- Problem: Der Wert wird immer wieder übeschrieben
+- Um das zu vermeiden gibt es das onChange Attribut
+	- Nutzen vom handleChange um die state und somit den Wert im Feld zu aktualisieren
+
+```javascript
+state = {commaSeperated='Mensch'}
+handleChange = event => {
+    this.setState({commaSeperated: event.target.value})
+}
+
+//... inside render
+const {commaSeperated} = this.state
+
+//... inside of form
+<input type="text" value={commaSeperated} onChange={this.handleChange} />
+```
+
+---
+
+# .center[Key Zuordnung von Key-Values]
+
+- Keys sind wichtig um beim ändern eines Array die Elemente richtig einordnen zu können
+	- Keys müssen einzigartig sein
+
+```javascript
+<div key={item.id}>{item.valaue}<div/>
+```
+
+---
+
+# .center[HTTP Anfragen mit React]
+- Nutzen der Funktion componentDidMount
+- In componentDidMount muss dann eine lib wie axios genutzt werden für den request
+	- Es müssen dann sachen wie url, method, data übergeben werden
+
+```javascript
+componentDidMount() {
+	axios({
+		url: 'https://api.github.com/graphql',
+		method: 'post',
+		data: {
+			query: `{
+				user(login: "${this.props.username}") {
+				company
+			}
+		}`
+	},
+	headers: {
+		Authorization: `Kein Token zusehen`,
+	},
+}
+```
+
+---
+
+# .center[Build and Deploy]
+
+- codesandbox.io
+	- Online Editor der es erlaubt die Entwicklung seiner React Anwendung im Browser zu machen
+	- Man kann sein Projekt auch als .zip herunterladen
+- netlify.com
+	- Möglichkeit seine Website direkt hochzuladen und über netlify zu nutzen
+
+---
+
+class: center, middle
+
+# Vielen Dank für die Aufmerksamkeit
+(Artem Kul'bashny und Slavko Dick)
+
+    </textarea>
+    <script src="https://remarkjs.com/downloads/remark-latest.min.js">
+    </script>
+    <script>
+      var slideshow = remark.create();
+    </script>
+  </body>
+</html>
