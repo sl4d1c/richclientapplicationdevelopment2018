@@ -29,41 +29,137 @@ class: center, middle
 - npm 
 	- Was ist npm?
 	- Installation von npm
+	- package.json
 	- Installation von Paketen
 	- Updaten von Paketen
 	- Deinstallation von Paketen
-	- package.json
+	- Übertragen des eigenen Programmes
 
 
 ---
 
 # .center[Was ist npm?]
 
+- npm steht für Node Package Manager
+- Es wird genutzt um Module und Pakete einfach zu installieren
+- Macht es für Entwickler einfach Code zu teilen und Code anderer zu nutzen
 
 ---
 
 # .center[Installation npm]
 
-
----
-
-# .center[Installation von Paketen]
-
-
----
-
-# .center[Update von Paketen]
-
-
----
-
-# .center[Deinstallation von Paketen]
-
+- npm wird zusammen mit Node.js installiert
+	- Eine Version ohne Node.js gibt es nicht
+- Für Windows Systeme einfach https://nodejs.org/ besuchen und downloaden
+- Linux installation erfolgt über den Paketemanager
 
 ---
 
 # .center[package.json]
 
+- Wird erstellt mit `npm init`
+	- Um alle defaults zu übernehmen Nutzt man `npm init -y`
+- package.json ist eine Konfigurationsdatei und es werden Dinge gespeichert wie
+	- Name der Applikation
+	- Version
+	- Beschreibung
+	- Autor 
+	- Abhängigkeiten
+- Die Abhängigkeiten stellen Pakete dar welche zum Projekt hinzugefügt wurden wenn bei der Installation alles richtig gemacht wurde
+
+---
+
+# .center[package.json - Beispiel]
+
+```javascript
+{
+	"name": "app",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \""Error: no test specified\" && exit 1
+	},
+	"keywords": [],
+	"author": ""
+	"license": "ISC", 
+	"dependencies": {
+		"lodash": "^4.17.10"
+	}
+}
+```
+
+---
+
+# .center[Installation von Paketen]
+
+## Lokal
+
+- Lokale Pakete werden in dem Ort installiert in dem der Installationsbefehl ausgeführt wurde
+- Pakete werden mit dem Befehl `npm install 'Paketname'` installiert
+	- Zum Beispiel `npm install lodash`
+	- Besser ist aber `npm install lodash --save` 
+	- Oder `npm install lodash --save-dev`
+- Durch nutzen von `--save`/`--save-dev` wird das installierte Paket in der package.json unter dependencies/devDependencies gespeichert
+
+---
+
+# .center[Installation von Paketen]
+
+## Global
+
+- Funktioniert praktisch wie Lokale installation
+	- `npm install lodash -g`
+
+## Bestimmte Version
+
+- Installation einer Bestimmten Version Funktioniert mit 
+	- `npm install lodash@4.17.4 --save`
+
+---
+
+# .center[Update von Paketen]
+
+- Das Aktualisieren von Paketen funktioniert mit 
+	- `npm update lodash --save`
+- Wichtig ist das man hier auch wieder entweder `--save` oder `--save-dev` nutzt 
+
+---
+
+# .center[Deinstallation von Paketen]
+
+## Local
+
+- Deinstallation von Paketen mit dem Befehl 
+	- `npm remove lodash --save`
+- Wichtig ist das man hier auch wieder entweder `--save` oder `--save-dev` nutzt damit der Eintrag aus der package.json entfernt wird
+
+## Global
+
+- Deinstallieren von globalen Paketen mit einem `-g`
+	- `npm remove -g lodash`
+
+---
+
+# .center[Übertragen des eigenen Programmes]
+
+- Das Programm wird installiert durch den Befehl 
+	- `npm install` oder `npm install --production`
+- Wenn die Abhängigkeiten in der Pakete richtig in der package.json eingetragen sind werden sie automatisch heruntergeladen
+	- Es kann aber nicht einfach die neuste Version der Pakete geladen werden
+	- Dadurch kann es Probleme bei der kompatibilität geben
+
+```javascript
+"dependencies": {
+		"lodash": "^4.17.10"
+	}
+```
+
+- Es gibt unterschiedliche Wege zu zeigen welche Version man möchte
+	- `"lodash": "*"` -> Neuste Version
+	- `"lodash": "^4.17.10"` -> Version 4.x.x
+	- `"lodash": "~4.17.10"` -> Version 4.17.x
+	- `"lodash": "4.17.10"` -> Nur Version 4.17.10
 
 ---
 
