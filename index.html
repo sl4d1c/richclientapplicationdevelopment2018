@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ES6 Vorstellung</title>
+    <title>npm & webpack</title>
     <meta charset="utf-8">
     <style>
       @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
@@ -26,7 +26,7 @@ class: center, middle
 
 # .center[Agenda]
 
-- npm 
+- npm
 	- Was ist npm?
 	- Installation von npm
 	- package.json
@@ -34,6 +34,9 @@ class: center, middle
 	- Updaten von Paketen
 	- Deinstallation von Paketen
 	- Übertragen des eigenen Programmes
+- webpack
+  - Was ist Webpack
+  - blub
 
 
 ---
@@ -63,7 +66,7 @@ class: center, middle
 	- Name der Applikation
 	- Version
 	- Beschreibung
-	- Autor 
+	- Autor
 	- Abhängigkeiten
 - Die Abhängigkeiten stellen Pakete dar welche zum Projekt hinzugefügt wurden wenn bei der Installation alles richtig gemacht wurde
 
@@ -82,7 +85,7 @@ class: center, middle
 	},
 	"keywords": [],
 	"author": ""
-	"license": "ISC", 
+	"license": "ISC",
 	"dependencies": {
 		"lodash": "^4.17.10"
 	}
@@ -98,7 +101,7 @@ class: center, middle
 - Lokale Pakete werden in dem Ort installiert in dem der Installationsbefehl ausgeführt wurde
 - Pakete werden mit dem Befehl `npm install 'Paketname'` installiert
 	- Zum Beispiel `npm install lodash`
-	- Besser ist aber `npm install lodash --save` 
+	- Besser ist aber `npm install lodash --save`
 	- Oder `npm install lodash --save-dev`
 - Durch nutzen von `--save`/`--save-dev` wird das installierte Paket in der package.json unter dependencies/devDependencies gespeichert
 
@@ -113,16 +116,16 @@ class: center, middle
 
 ## Bestimmte Version
 
-- Installation einer Bestimmten Version Funktioniert mit 
+- Installation einer Bestimmten Version Funktioniert mit
 	- `npm install lodash@4.17.4 --save`
 
 ---
 
 # .center[Update von Paketen]
 
-- Das Aktualisieren von Paketen funktioniert mit 
+- Das Aktualisieren von Paketen funktioniert mit
 	- `npm update lodash --save`
-- Wichtig ist das man hier auch wieder entweder `--save` oder `--save-dev` nutzt 
+- Wichtig ist das man hier auch wieder entweder `--save` oder `--save-dev` nutzt
 
 ---
 
@@ -130,7 +133,7 @@ class: center, middle
 
 ## Local
 
-- Deinstallation von Paketen mit dem Befehl 
+- Deinstallation von Paketen mit dem Befehl
 	- `npm remove lodash --save`
 - Wichtig ist das man hier auch wieder entweder `--save` oder `--save-dev` nutzt damit der Eintrag aus der package.json entfernt wird
 
@@ -143,7 +146,7 @@ class: center, middle
 
 # .center[Übertragen des eigenen Programmes]
 
-- Das Programm wird installiert durch den Befehl 
+- Das Programm wird installiert durch den Befehl
 	- `npm install` oder `npm install --production`
 - Wenn die Abhängigkeiten in der Pakete richtig in der package.json eingetragen sind werden sie automatisch heruntergeladen
 	- Es kann aber nicht einfach die neuste Version der Pakete geladen werden
@@ -161,6 +164,212 @@ class: center, middle
 	- `"lodash": "~4.17.10"` -> Version 4.17.x
 	- `"lodash": "4.17.10"` -> Nur Version 4.17.10
 
+---
+
+# .center[Was ist Webpack?]
+
+Webpack ist ein Modulbündler, dessen Hauptzweck das Bündlen von javascript-Dateien
+für die Browsernutzung ist. Es packt, transformiert oder bündelt aber auch nahezu
+jede Resource.
+
+---
+
+# .center[setup]
+
+- zunächst muss webpack mittels npm installiert werden
+```shell
+mkdir webpack-demo && cd webpack-demo
+npm init -y
+npm install --save-dev webpack webpack-cli
+```
+- anschließend muss folgende Ordnerstruktur erstellt werden
+
+```
+  webpack-demo
+  |- package.json
+  |- webpack.config.js
+  |- /src
+    |- index.js
+  |- /dist
+    |- index.html
+
+```
+- folgend wird auf die einzelnen Dateien eingegangen
+---
+
+# .center[setup]
+
+### dist/index.html
+```html
+<!doctype html>
+<html>
+  <head>
+    <title>Ahoi</title>
+  </head>
+  <body>
+    <script src="bundle.js"></script>
+  </body>
+</html>
+```
+### src/index.js
+```javascript
+const root = document.createElement("div")
+root.innerHTML = `<p>Hello Webpack.</p>`
+document.body.appendChild(root)
+```
+---
+
+# .center[setup]
+
+### webpack.config.js
+```javascript
+const path = require('path')
+module.exports = {
+  entry: './src/index.js',
+  output: {
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'dist')
+  }
+}
+```
+### package.json
+```json
+  {
+    ...
+    "scripts": {
+     "test": "echo \"Error: no test specified\" && exit 1"
+     "develop": "webpack --mode development --watch",
+     "build": "webpack --mode production"
+   },
+   ...
+  }
+```
+---
+# .center[setup]
+
+- man kreiert das Bundle mit
+```shell
+npm run develop
+```
+- nun kann man die *dist/index.html* im Browser öffnen, welche uns mit *Ahoi* begrüßt
+- *webpack* erzeugt *dist/bundle.js*, es ist nun in der Lage das Projekt
+für alle Browser zu erzeugen
+- mit *npm run build* wird das Bundle im *production mode* kompiliert
+- *development mode* ist optimiert für schnelles Bauen und Debugging
+- *production mode* ist optimiert für schnelle Ausführung zur Laufzeit und die
+  Ausgabedatei-Größe
+
+---
+
+# .center[modules]
+
+Mit Modulen kann man große Programme in kleinere splitten.
+Mittels *import* und *export* kann man Module hinzufügen.
+
+---
+# .center[modules]
+
+###src/index.js
+```javascript
+import { groupBy } from "lodash-es"
+import people from "./people"
+const managerGroups = groupBy(people, "manager")
+const root = document.createElement("div")
+root.innerHTML = `<pre>${JSON.stringify(managerGroups, null, 2)}</pre>`
+document.body.appendChild(root)
+```
+---
+# .center[modules]
+###src/people.js
+```javascript
+const people = [
+  {
+    manager: "Jen",
+    name: "Bob"
+  },
+  {
+    manager: "Jen",
+    name: "Sue"
+  },
+  {
+    manager: "Bob",
+    name: "Shirley"
+  }
+]
+export default people
+```
+---
+# .center[modules]
+
+Wenn man nun mit *npm run develop* webpack lufen lässt, und die index.html aktualisiert,
+sieht man ein Array von Leuten nach den Managern sortiert. Man hat eine Methode
+aus dem importierten Modul benutzt.
+
+---
+# .center[loaders]
+
+Mit Loadern kann man Preprocessoren über Dateien laufen lassen, sobald sie importiert
+werden. So kann man statische Resourcen bündeln.
+
+Wenn man z.B Babel installiert kann man seine .js Dateien transpilen
+
+```shell
+npm install --save-dev "babel-loader@^8.0.0-beta" @babel/core @babel/preset-env
+```
+
+---
+# .center[loaders]
+
+### webpack.config.js
+
+```JSON
+const path = require('path')
+
+module.exports = {
+  entry: './src/index.js',
+  output: {
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'dist')
+  },
+  module: {
+    rules: [
+    {
+      test: /\.js$/,
+      exclude: /(node_modules|bower_components)/,
+      use: {
+        loader: 'babel-loader',
+      }
+    }
+    ]
+  }
+}
+```
+---
+# .center[loaders]
+
+### .babelrc
+
+```JSON
+{
+  "presets":[
+  ["@babel/env", {
+    "modules": false
+  }]
+  ],
+  "plugins": ["syntax-dynamic-import"]
+}
+```
+---
+# .center[codes splitting]
+
+---
+# .center[plugins]
+
+---
+# .center[development]
+
+---
+# .center[placeholder]
 ---
 
 class: center, middle
