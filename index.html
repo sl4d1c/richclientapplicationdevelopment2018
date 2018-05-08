@@ -301,9 +301,9 @@ export default people
 ---
 # .center[modules]
 
-Wenn man nun mit *npm run develop* webpack lufen lässt, und die index.html aktualisiert,
-sieht man ein Array von Leuten nach den Managern sortiert. Man hat eine Methode
-aus dem importierten Modul benutzt.
+Wenn man nun mit *npm run develop* webpack laufen lässt, und die *index.html*
+aktualisiert, sieht man ein Array von Leuten nach den Managern sortiert. Man hat
+eine Methode aus dem importierten Modul benutzt.
 
 ---
 # .center[loaders]
@@ -322,7 +322,7 @@ npm install --save-dev "babel-loader@^8.0.0-beta" @babel/core @babel/preset-env
 
 ### webpack.config.js
 
-```JSON
+```javascript
 const path = require('path')
 
 module.exports = {
@@ -359,17 +359,88 @@ module.exports = {
   "plugins": ["syntax-dynamic-import"]
 }
 ```
+
+Diese Konfiguration z.B. verhindert das import und export Dateien zu ES5 transpiliert
+werden.
+
 ---
+# .center[loaders]
+
+### Verkettungen
+
+Loader können auch verkettet werden, um eine Reihe an Transformationen durchzuführen.
+
+```shell
+npm install --save-dev style-loader css-loader sass-loader node-sass
+```
+
+---
+# .center[loaders]
+
+### webpack.config.js
+
+```javascript
+module.exports = {
+  ...
+  module: {
+    rules: [
+    ...
+    {
+      test: /\.scss$/,
+      use: [{
+        loader: 'style-loader'
+      },{
+        loader: 'css-loader'
+      },{
+        loader: 'sass-loader'
+      }]
+    }
+    ]
+  }
+}
+```
+---
+# .center[loaders]
+
+Die Loader werden in umgekehrter Reihenfolge abgearbeitet:
+* **sass-loader**:  transformiert Sass zu CSS
+* **css-loader**:   parst CSS zu JavaScript löst alle Abhängigkeiten auf
+* **style-loader**: schreibt die CSS in einen **style** tag im Dokument
+
+Gründe um das zu tun, könnten sein:
+* einige Komponenten beruhen auf bestimmten Dateien, so können sie bequem gebündelt
+importiert werden
+* toter Code wird eliminiert, sobald eine Komponente nicht gebraucht wird, wird auch
+die css Datei entfernt, da alles gebündelt ist
+* HTTP Requests werden minimiert, wenn man den Code gut bündelt und splittet
+
+Ein weiterer Anwendungsfall für Loader sind Bilder, zumindest für kleinere Bilder
+kann man die Source als String im JavaScript hinterlegen, so müssen sie nicht zur
+Laufzeit erst geladen werden sonder können vorgeladen werden.
+
+---
+
 # .center[codes splitting]
+
+Mit code splitting kann man sein Projekt in kleinere Teile aufteilen, so muss nicht
+zu Beginn alles geladen werden, sondern nur nach Bedarf nachgeladen.
 
 ---
 # .center[plugins]
 
+Plugins sind ähnlich wie loaders, jedoch transformieren sie nicht einzelne Dateien,
+sondern größere Stücke Code
+
+Ein Beispiel dafür sind "modes", so kann man verschiedene Pakete laden je nach Modus.
+
 ---
 # .center[development]
 
----
-# .center[placeholder]
+Mit dem ```webpack-dev-server``` bekommt man einen kleinen simplen Server, mit
+welchem man live Änderungen der Seite angezeigt bekommt.
+
+Das **HotModuleReplacement** kann sogar live Module zur Laufzeit austauschen.
+Das kann eine Menge Zeit sparen bei der Entwicklung von Single Page Apps.
 ---
 
 class: center, middle
