@@ -5,8 +5,8 @@ Titel, Autoren, (Inhaltsverzeichnis)
 # 1 Einführung
 
 ## 1.1 Beschreibung
-    - Projektname
-    - Darstellung der Produktvision in Prosa (5-10 Sätze)
+    - Survey Creator
+    - Im Rahmen unseres Projektes wollen wir eine Anwendung zur Erstellung von Umfragen erstellen. Benutzer sollen die Möglichkeit erhalten, eine Umfrage zu erstellen oder zu beantworten. Um die Umfrage anzulegen, wählt man aus einem vordefinierten Pool von Elementen. Der Umfrageersteller kann Elemente aus dem Pool individuell auswählen und  diese der Umfrage hinzufügen, wie verschiedene Seitenlayouts und verschiedene Möglichkeiten, die Fragen zu beantworten, wie Drop-Down-Antworten, Multiple-Choice-Antworten oder ob Antworten erforderlich sind. Der Beantworter soll dann in der Lage sein, die Umfrage zu beantworten, und seine Daten sollen dann in einer Datenbank gespeichert werden. Künftig kann es möglich sein, eine Analyse der Umfragedaten für den Ersteller durchzuführen.
 
 ## 1.2 Ziele
     - Anwendungsbereiche, Motivation, Umfang, Marktanforderungen, Alleinstellungsmerkmale
@@ -19,7 +19,7 @@ Titel, Autoren, (Inhaltsverzeichnis)
     - Use-Case Diagramme
     - Strukturierung der Diagramme in funktionale Gruppen
 
-## 2.2 Nicht-funktionale Anforderungen 
+## 2.2 Nicht-funktionale Anforderungen
 
 ### 2.2.1 Rahmenbedingungen
     - Normen, Standards, Protokolle, Hardware, externe Vorgaben
@@ -35,7 +35,7 @@ Titel, Autoren, (Inhaltsverzeichnis)
     - Modellierung der Navigation zwischen den Screens der GUI-Mockups als Zustandsdiagramm
 
 ## 2.4 Anforderungen im Detail
-    - User Stories mit Akzeptanzkritierien 
+    - User Stories mit Akzeptanzkritierien
     - Optional: Name (oder ID) und Priorität ("Must", "Should", "Could", "Won't")
     - Strukturierung der User Stories in funktionale Gruppen
 
@@ -68,7 +68,7 @@ Titel, Autoren, (Inhaltsverzeichnis)
 ## 3.2 Softwarearchitektur
     - Darstellung von Softwarebausteinen (Module, Schichten, Komponenten)
 
-## 3.3 Datenmodell 
+## 3.3 Datenmodell
     - Konzeptionelles Analyseklassendiagramm
 
 ## 3.4 Abläufe
@@ -95,13 +95,10 @@ Titel, Autoren, (Inhaltsverzeichnis)
 
 # 5 Anhänge
 
-## 5.1 Glossar 
+## 5.1 Glossar
     - Definitionen, Abkürzungen, Begriffe
 
 ## 5.2 Referenzen
     - Handbücher, Gesetze
 
 ## 5.3 Index
-
-
-
