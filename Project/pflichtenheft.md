@@ -29,8 +29,6 @@ Der Umfrageersteller soll mithilfe unserer Applikation die Möglichkeit erhalten
 
 ### Informationen zu Zielbenutzergruppen und deren Merkmale (Bildung, Erfahrung, Sachkenntnis)
 
-Unsere Webseite ist für jederman geeignet der 
-
 Wie bereits zuvor erwähnt ist die Zielgruppe ziemlich breit, von der technisch unerfahrenen Person bis hin zur technisch versierten Person. Aufgrund dessen sollte die Handhabung möglichst einfach sein um den unversierten Nutzer nicht auszuschließen.
 
 ### Abgrenzung (Was ist das Softwaresystem _nicht_)
