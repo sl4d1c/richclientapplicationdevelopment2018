@@ -6,7 +6,7 @@ Titel, Autoren, (Inhaltsverzeichnis)
 
 ## 1.1 Beschreibung
 
-Im Rahmen unseres Projektes, mit dem Namen "Survey Creator", wollen wir eine Anwendung zur Erstellung von Umfragen erstellen. Benutzer sollen die Möglichkeit erhalten, eine Umfrage zu erstellen oder zu beantworten. Um die Umfrage anzulegen, wählt man aus einem vordefinierten Pool von Elementen. Der Umfrageersteller kann Elemente aus dem Pool individuell auswählen und  diese der Umfrage hinzufügen, wie verschiedene Seitenlayouts und verschiedene Möglichkeiten, die Fragen zu beantworten, wie Drop-Down-Antworten, Multiple-Choice-Antworten oder ob Antworten erforderlich sind. Der Beantworter soll dann in der Lage sein, die Umfrage zu beantworten, und seine Daten sollen dann in einer Datenbank gespeichert werden. Künftig kann es möglich sein, eine Analyse der Umfragedaten für den Ersteller durchzuführen.
+Im Rahmen unseres Projektes, mit dem Namen "Survey Creator", wollen wir eine Anwendung zur Erstellung von Umfragen erstellen. Registrierte Nutzer sollen die Möglichkeit erhalten Umfragen selbst erstellen zu können und alle, also auch Besucher, sollen die möglichkeit haben Umfragen beantworten zu können. Beim erstellen der Umfrage, wählt man aus einem vordefinierten Pool von Elementen. Der Umfrageersteller kann Elemente aus einem vorgefertigten Pool individuell auswählen und diese der Umfrage hinzufügen, dazu gehören verschiedene Seitenlayouts und unterschiedliche Möglichkeiten Fragen zu beantworten, wie Drop-Down-Antworten, Multiple-Choice-Antworten oder ob Antworten überhaupt erforderlich sind. Nach dem beantworten einer Umfrage werden bei uns die Daten sicher gespeichert und für den ersteller der Umfrage abrufbar gemacht. Künftig kann es möglich sein, eine Analyse der Umfragedaten für den Ersteller durchzuführen.
 
 ## 1.2 Ziele
 ### Anwendungsbereiche, Motivation, Umfang, Marktanforderungen, Alleinstellungsmerkmale
@@ -32,7 +32,7 @@ Wie bereits zuvor erwähnt ist die Zielgruppe ziemlich breit, von der technisch 
 
 ### Abgrenzung (Was ist das Softwaresystem _nicht_)
 
-Die Applikation soll nicht selbständig Umfragen erstellen sondern nur ein Werkzeug dafür sein. Es gibt keine Garantie dafür, das bei der Auswertung der Daten etwas für den Ersteller sinnvolles oder prägnantes rauskommt.
+Die Applikation bietet keine templates für Umfragen und ist nicht in der lage selbständig Umfragen zu erstellen, sie ist nur ein Werkzeug dafür sein. Unserer Software ist es nicht möglich Antworten auf richtigkeit zu überprüfen, deshalb ist der Ersteller der Umfrage selbst dafür verantwortlich seine Fragen und Antwortmöglichkeiten so zu gestalten, dass bei der Auswertung der Daten für ihn sinnvolle Ergebnisse zur verfügung stehen.
 
 # 2 Anforderungen
 
