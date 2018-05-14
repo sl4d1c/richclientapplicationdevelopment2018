@@ -5,9 +5,8 @@ Titel, Autoren, (Inhaltsverzeichnis)
 # 1 Einführung
 
 ## 1.1 Beschreibung
-Survey Creator
 
-Im Rahmen unseres Projektes wollen wir eine Anwendung zur Erstellung von Umfragen erstellen. Benutzer sollen die Möglichkeit erhalten, eine Umfrage zu erstellen oder zu beantworten. Um die Umfrage anzulegen, wählt man aus einem vordefinierten Pool von Elementen. Der Umfrageersteller kann Elemente aus dem Pool individuell auswählen und  diese der Umfrage hinzufügen, wie verschiedene Seitenlayouts und verschiedene Möglichkeiten, die Fragen zu beantworten, wie Drop-Down-Antworten, Multiple-Choice-Antworten oder ob Antworten erforderlich sind. Der Beantworter soll dann in der Lage sein, die Umfrage zu beantworten, und seine Daten sollen dann in einer Datenbank gespeichert werden. Künftig kann es möglich sein, eine Analyse der Umfragedaten für den Ersteller durchzuführen.
+Im Rahmen unseres Projektes, mit dem Namen "Survey Creator", wollen wir eine Anwendung zur Erstellung von Umfragen erstellen. Benutzer sollen die Möglichkeit erhalten, eine Umfrage zu erstellen oder zu beantworten. Um die Umfrage anzulegen, wählt man aus einem vordefinierten Pool von Elementen. Der Umfrageersteller kann Elemente aus dem Pool individuell auswählen und  diese der Umfrage hinzufügen, wie verschiedene Seitenlayouts und verschiedene Möglichkeiten, die Fragen zu beantworten, wie Drop-Down-Antworten, Multiple-Choice-Antworten oder ob Antworten erforderlich sind. Der Beantworter soll dann in der Lage sein, die Umfrage zu beantworten, und seine Daten sollen dann in einer Datenbank gespeichert werden. Künftig kann es möglich sein, eine Analyse der Umfragedaten für den Ersteller durchzuführen.
 
 ## 1.2 Ziele
 ### Anwendungsbereiche, Motivation, Umfang, Marktanforderungen, Alleinstellungsmerkmale
