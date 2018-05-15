@@ -13,3 +13,10 @@ and add them to the survey, as well as different page layouts and different ways
 such as drop-down answers, multiple choice answers or whether answers are required. The responder
 should then be able to answer the survey and his data should then be stored in a database. In the future
 it may be possible to perform an analysis of the survey data for the creator.
+
+# All presentations can be found in /docs folder
+[presentations](https://github.com/sl4d1c/richclientapplicationdevelopment2018/tree/master/docs)
+
+
+# The Project can be found in the Project folder
+[Project](https://github.com/sl4d1c/richclientapplicationdevelopment2018/tree/master/Project)
