@@ -446,12 +446,62 @@ welchem man live Änderungen der Seite angezeigt bekommt.
 
 Das **HotModuleReplacement** kann sogar live Module zur Laufzeit austauschen.
 Das kann eine Menge Zeit sparen bei der Entwicklung von Single Page Apps.
+
 ---
 
 class: center, middle
 
 # Vielen Dank für die Aufmerksamkeit
 (Artem Kul'bashny und Slavko Dick)
+
+---
+
+class: center, middle
+
+# Tests
+
+---
+
+# .center[Agenda]
+
+- Testen?
+- Funktionaler Code
+
+---
+
+# .center[Testen?]
+
+- Warum sollte ich testen?
+	- Sicherstellen der Programmfunktionalität
+- Was für tests gibt es?
+	- Unit tests -> prüft die funktionalität von isolierten Code 
+	- Integration tests -> prüft den fluss von Informationen zwischen Komponenten
+	- Functional tests -> prüft das allgemeine Verhalten des Programmes
+- Wann sollte ich testen? 
+	- Immer 
+	- Vor dem schreiben des eigentlichen Code
+
+---
+
+# .center[Funktionaler Code]
+
+- Wie gut man testen kann ist abhängig davon wie gut der Code geschrieben wurde
+- Funktionaler Code ist Code der so gekapselt wie möglich ist 
+	- Ohne große abhängigkeiten lässt sich Code leichter testen
+	- Globale Variablen sollten vermieden werden
+		- Abhängigkeiten werden erzeugt wenn mehrere Funktionen auf eine Variable zugreifen
+- Nutzung "purer" Funktionen ist notwendig
+	- Verlässt sich nicht auf externe Variablen 
+	- Verändert keine externen Variablen
+	- Gibt immer den selben output für den selben input
+
+---
+
+class: center, middle
+
+# Vielen Dank für die Aufmerksamkeit
+(Artem Kul'bashny und Slavko Dick)
+
 
     </textarea>
     <script src="https://remarkjs.com/downloads/remark-latest.min.js">
