@@ -55,7 +55,16 @@ Die Applikation bietet keine templates für Umfragen und ist nicht in der lage s
 
 ##### GUI-Mockups
 
-
+![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/Main%20frame.png)
+![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/Register.png)
+![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/Login.png)
+![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/Main%20frame%20after%20Login.png)
+![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/Reset%20Password.png)
+![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/Send%20Reset%20Mail.png)
+![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/Settings.png)
+![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/Answer%20Survey.png)
+![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/Create%20Survey.png)
+![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/Survey%20Results.png)
 
 ##### Zustandsdiagramm
 
