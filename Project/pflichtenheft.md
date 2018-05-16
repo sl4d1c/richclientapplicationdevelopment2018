@@ -52,8 +52,14 @@ Die Applikation bietet keine templates für Umfragen und ist nicht in der lage s
     - Externe Qualitätsanforderungen (z.B. Performance, Sicherheit, Zuverlässigkeit, Benutzerfreundlichkeit)
 
 ## 2.3 Graphische Benutzerschnittstelle
-    - GUI-Mockups passend zu User Stories
-    - Modellierung der Navigation zwischen den Screens der GUI-Mockups als Zustandsdiagramm
+
+##### GUI-Mockups
+
+
+
+##### Zustandsdiagramm
+
+![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/state.png)
 
 ## 2.4 Anforderungen im Detail
     - User Stories mit Akzeptanzkritierien
