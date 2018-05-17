@@ -1,6 +1,6 @@
 # Anforderungs- und Entwurfsspezifikation ("Pflichtenheft")
 
-Titel, Autoren, (Inhaltsverzeichnis)
+Survey Tool, A. Kul'Bashny & S. Dick
 
 # 1 Einführung
 
