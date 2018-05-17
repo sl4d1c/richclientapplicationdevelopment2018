@@ -52,17 +52,57 @@ Die Applikation bietet keine templates für Umfragen und ist nicht in der lage s
 
 ## 2.3 Graphische Benutzerschnittstelle
 
-##### GUI-Mockups
+#### GUI-Mockups
+
+##### Start
 
 ![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/Main%20frame.png)
+
+##### Registration
+
 ![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/Register.png)
+
+##### Login
+
 ![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/Login.png)
+
+##### Home
+
 ![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/Main%20frame%20after%20Login.png)
-![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/Reset%20Password.png)
+
+##### Reset Password
+
+![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/Reset%20Mail.png)
+
 ![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/Send%20Reset%20Mail.png)
+
+
+##### Settings
+
 ![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/Settings.png)
+
+##### My Surveys
+
+![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/My%20Surveys.png)
+
+##### Answer survey
+
 ![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/Answer%20Survey.png)
+
+##### After survey answering
+
+![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/Answering%20Thanks.png)
+
+##### Create Survey
+
 ![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/Create%20Survey.png)
+
+##### After Create Survey
+
+![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/After%20Survey%20Creation.png)
+
+##### Survey Result
+
 ![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/Survey%20Results.png)
 
 ##### Zustandsdiagramm
