@@ -1,7 +1,7 @@
 # richclientapplicationdevelopment2018
 [gnab/remark](https://github.com/gnab/remark) based on remark
 
-[npm & webpack + tooling](https://sl4d1c.github.io/richclientapplicationdevelopment2018/) Link to github pages
+[testing](https://sl4d1c.github.io/richclientapplicationdevelopment2018/) Link to github pages
 
 This repo is for the course rich client application development 2018
 
