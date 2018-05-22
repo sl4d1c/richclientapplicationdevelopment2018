@@ -84,22 +84,24 @@ nach ES6 Standart behandelt wird
 - sie erweitert das einfache Assert, welches in NodeJS enthalten ist um weitere Assertions
 
 ---
+
 # .center[SinonJS]
+
 mit SinonJS kann man zum Testen auf spies, stubs und mocks zurückgreifen
-### spies
-- kreieren Fakefunktionen um zu testen wie oft Aufrufe gemacht werden
-- man kann sie aber auch auf reele Funktionen anwenden um ihre Aufrufe zu tracken
-### stubs
-- damit kann man Funktionen ersetzen und ihr Verhalten manipulieren
-- so können wir das Verhalten genau kontrolieren um unsere Szenarien zu Testen
-### mocks
-- sind Fake Methoden mit vorprogrammiertem Verhalten
-- damit kann man Klassen testen, welche andere Klassen aufrufen
+- spies
+  - kreieren Fakefunktionen um zu testen wie oft Aufrufe gemacht werden
+  - man kann sie aber auch auf reele Funktionen anwenden um ihre Aufrufe zu tracken
+- stubs
+  - damit kann man Funktionen ersetzen und ihr Verhalten manipulieren
+  - so können wir das Verhalten genau kontrolieren um unsere Szenarien zu Testen
+- mocks
+  - sind Fake Methoden mit vorprogrammiertem Verhalten
+  - damit kann man Klassen testen, welche andere Klassen aufrufen
 
 ---
-# .center[spies]
+# .center[Spies]
 
-Beispiel
+### Beispiel
 
 ```javascript
 module.exports = {
@@ -112,7 +114,7 @@ module.exports = {
 
 ---
 
-# .center[spies]
+# .center[Spies]
 
 ```javascript
 const chai = require("chai");
@@ -143,8 +145,9 @@ describe("getIndexPage", function() {
 
 ---
 
-# .center[stubs]
-Beispiel
+# .center[Stubs]
+
+### Beispiel
 
 ```JavaScript
 module.exports = {
@@ -160,7 +163,7 @@ module.exports = {
 
 ---
 
-# .center[stubs]
+# .center[Stubs]
 
 - zunächst werden die Module importiert
 
@@ -175,7 +178,7 @@ const indexPage = require("../../controllers/app.controller.js");
 
 ---
 
-# .center[stubs]
+# .center[Stubs]
 
 - hier wird mittels stub immer isLoggedIn true zurückgegeben
 
@@ -205,7 +208,7 @@ describe("AppController", function()  {
 
 ---
 
-# .center[stubs]
+# .center[Stubs]
 
 - zuletzt überprüfen wir ob sich die Funktion verhält wie erwartet
 
@@ -226,9 +229,9 @@ expect(isLoggedInStub.calledOnce).to.be.true;
 
 ---
 
-# .center[mocks]
+# .center[Mocks]
 
-- Beispiel (Module müssen importiert werden)
+### Beispiel (Module müssen importiert werden)
 
 ```javascript
 describe("AppController", function()  {
@@ -247,18 +250,18 @@ describe("AppController", function()  {
         user: user
       }
 
-      // Have `res` have a send key with a function value coz we use `res.send()` in our func
-      let res = {
-        send: function(){}
-      }
-
 ```
 
 ---
 
-# .center[mocks]
+# .center[Mocks]
 
 ```javascript
+
+      // Have `res` have a send key with a function value coz we use `res.send()` in our func
+      let res = {
+          send: function(){}
+      }
       // mock res
       const mock = sinon.mock(res);
       // build how we expect it t work
