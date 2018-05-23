@@ -31,7 +31,7 @@ Der Umfrageersteller soll mithilfe unserer Applikation die Möglichkeit erhalten
 Wie bereits zuvor erwähnt ist die Zielgruppe ziemlich breit, von der technisch unerfahrenen Person bis hin zur technisch versierten Person. Aufgrund dessen sollte die Handhabung möglichst einfach sein um den unversierten Nutzer nicht auszuschließen.
 
 ### Abgrenzung (Was ist das Softwaresystem _nicht_)
-Die Applikation bietet keine templates für Umfragen und ist nicht in der lage selbständig Umfragen zu erstellen, sie ist nur ein Werkzeug dafür sein. Unserer Software ist es nicht möglich Antworten auf richtigkeit zu überprüfen, deshalb ist der Ersteller der Umfrage selbst dafür verantwortlich seine Fragen und Antwortmöglichkeiten so zu gestalten, dass bei der Auswertung der Daten für ihn sinnvolle Ergebnisse zur verfügung stehen.
+Die Applikation bietet keine templates für Umfragen und ist nicht in der Lage selbständig Umfragen zu erstellen, sie ist nur ein Werkzeug dafür sein. Unserer Software ist es nicht möglich Antworten auf richtigkeit zu überprüfen, deshalb ist der Ersteller der Umfrage selbst dafür verantwortlich seine Fragen und Antwortmöglichkeiten so zu gestalten, dass bei der Auswertung der Daten für ihn sinnvolle Ergebnisse zur verfügung stehen.
 
 # 2 Anforderungen
 
@@ -42,13 +42,21 @@ Die Applikation bietet keine templates für Umfragen und ist nicht in der lage s
 ## 2.2 Nicht-funktionale Anforderungen
 
 ### 2.2.1 Rahmenbedingungen
-    - Normen, Standards, Protokolle, Hardware, externe Vorgaben
+Die aktuellen Webstandarts wie HTML5, javascript und nodeJS sind zu beachten. Es soll auch
+auf gute Verschlüsselung geachtet werden, z.B. durch https, Authentifizierung und die
+Datenbank calls sollen gekappselt über eine API erreichbar sein um direkte Zugriffe clientseitig
+zu vermeiden. Bei der Hardware gibt es keine besonderen Komplikationenen, sie muss nur einen
+aktuellen Browser ausführen können.
 
 ### 2.2.2 Betriebsbedingungen
-    - Vorgaben des Kunden (z.B. Web Browser / Betriebssystem Versionen, Programmiersprache)
+Das Softwaresystem soll auf aktuellen Browsern laufen (Firefox ab v52, chrome ab v66.0.3359.181). Die Software
+soll in mit React erstellt werden und auf dem Server soll nodeJS laufen mit einer ANbindung zu einer MongoDB.
 
 ### 2.2.3 Qualitätsmerkmale
     - Externe Qualitätsanforderungen (z.B. Performance, Sicherheit, Zuverlässigkeit, Benutzerfreundlichkeit)
+Die Software soll schnell reagieren auf Benutzereingaben, Reaktionen sollen nicht länger als eine Sekunde
+dauern. Es ist wichtig, dass die Daten geschüzt werden, da mitunter sensible Nutzerdaten erfasst werden.
+Es soll ein ansprechendes und einfaches Design verwendet werden, um besonders benutzerfreundlich zu sein.
 
 ## 2.3 Graphische Benutzerschnittstelle
 
@@ -125,6 +133,17 @@ Die Applikation bietet keine templates für Umfragen und ist nicht in der lage s
 | **Als** | **möchte ich** | **so dass** | **Akzeptanz** |
 | :------ | :----- | :------ | :-------- |
 | Benutzer | bei Fehleingabe die Lösung angezeigt bekommen | ich lernen kann | Lösung wird angezeigt |
+
+###-----------------------------
+
+| **Als** | **möchte ich** | **so dass** | **Akzeptanz** |
+| :------ | :----- | :------ | :-------- |
+| Benutzer | bei Erfolg eine Meldung angezeigt bekommen | zufireden bin | Meldung wird angezeigt |
+
+| **Als** | **möchte ich** | **so dass** | **Akzeptanz** |
+| :------ | :----- | :------ | :-------- |
+| Benutzer | bei Ratlosigkeit Hilfe angezeigt bekommen | ich verstehen kann | Hilfe wird angezeigt |
+
 
 ### Beispiel 2
 
