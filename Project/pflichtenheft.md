@@ -134,7 +134,7 @@ Es soll ein ansprechendes und einfaches Design verwendet werden, um besonders be
 | :------ | :----- | :------ | :-------- |
 | Benutzer | bei Fehleingabe die Lösung angezeigt bekommen | ich lernen kann | Lösung wird angezeigt |
 
-###-----------------------------
+### _________________________________________________________
 
 | **Als** | **möchte ich** | **so dass** | **Akzeptanz** |
 | :------ | :----- | :------ | :-------- |
