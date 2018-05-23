@@ -53,7 +53,6 @@ Das Softwaresystem soll auf aktuellen Browsern laufen (Firefox ab v52, chrome ab
 soll in mit React erstellt werden und auf dem Server soll nodeJS laufen mit einer ANbindung zu einer MongoDB.
 
 ### 2.2.3 Qualitätsmerkmale
-    - Externe Qualitätsanforderungen (z.B. Performance, Sicherheit, Zuverlässigkeit, Benutzerfreundlichkeit)
 Die Software soll schnell reagieren auf Benutzereingaben, Reaktionen sollen nicht länger als eine Sekunde
 dauern. Es ist wichtig, dass die Daten geschüzt werden, da mitunter sensible Nutzerdaten erfasst werden.
 Es soll ein ansprechendes und einfaches Design verwendet werden, um besonders benutzerfreundlich zu sein.
@@ -176,8 +175,13 @@ Es soll ein ansprechendes und einfaches Design verwendet werden, um besonders be
 
 ## 4.1 Annahmen
     - Nicht durch den Kunden definierte spezifische Annahmen, Anforderungen und Abhängigkeiten
+
     - Verwendete Technologien (Programmiersprache, Frameworks, etc.)
+    javascript, nodeJS, React parse-communtiy server, MongoDB
+
     - Einschränkungen, Betriebsbedingungen und Faktoren, die die Entwicklung beeinflussen (Betriebssysteme, Entwicklungsumgebung)
+    Einarbeitung in eine unbekannte Technologie, neue Technologie => wenige Beispiele
+
     - Interne Qualitätsanforderungen (z.B. Softwarequalitätsmerkmale wie z.B. Erweiterbarkeit)
 
 ## 4.2 Verantwortlichkeiten
@@ -186,6 +190,9 @@ Es soll ein ansprechendes und einfaches Design verwendet werden, um besonders be
 
 ## 4.3 Grober Projektplan
     - Meilensteine
+    Infrastruktur 15.6
+    Clientimplementierung 29.6
+    Abgabe Juli
 
 # 5 Anhänge
 
