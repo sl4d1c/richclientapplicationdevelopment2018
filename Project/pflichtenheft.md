@@ -135,6 +135,8 @@ Es soll ein ansprechendes und einfaches Design verwendet werden, um besonders be
 | Nutzer | Umfragen erstellen können | ich die Informationen von den Beantwortern der Umfrage erhalte | Umfragen erstellen möglich |
 | Nutzer | eine Bestätigung beim Erfolgreichen erstellen meiner Umfrage erhalten | ich weiß, dass die Umfrage auch von anderen beantwortet werden kann | Weiterleiten auf die Seite after create survey |
 | Nutzer | Umfragenergebnisse einsehen | ich die Informationen von den Beantwortern der Umfrage erhalte | Ergebnisse fertiger Umfragen anschauen |
+| Nutzer | eine Seite haben in der ich alle meine Umfragen überblicken kann | ich bequem auf Ergebnisse oder Links zu den Umfragen zugreifen kann | Übersicht aller von dem Nutzer erstellten Umfragen vorhanden |
+| Nutzer | anderen Menschen einen Link zu meinen Umfragen senden können | diese meine Umfrage beantworten können | Erstellen eines individuellen Link zu jeder Umfrage |
 | Nutzer | die Möglichkeit haben Umfragen beantworten zu können | Umfragenersteller die Informationen bekommen nach denen sie suchen | Umfragen beantworten möglich |
 | Nutzer | eine Bestätigung bekommen das die Umfrage fertig beantwortet ist | ich weiß das die Umfrage abgeschlossen ist  | Weiterleitung auf After Survey Answering |
 
