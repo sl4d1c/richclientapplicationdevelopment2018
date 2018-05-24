@@ -132,7 +132,16 @@ Es soll ein ansprechendes und einfaches Design verwendet werden, um besonders be
 | **Als** | **möchte ich** | **so dass** | **Akzeptanz** |
 | :------ | :----- | :------ | :-------- |
 | Besucher | die Möglichkeit haben mich zu registrieren | ich Umfragen selbst erstellen kann | Registrierung möglich |
-| Besucher | die Möglichkeit haben Umfragen beantworten zu können | Umfragen ersteller die Informationen bekommen nach denen sie suchen | Umfragen beantworten möglich |
+| Besucher | die Möglichkeit haben Umfragen beantworten zu können | Umfragenersteller die Informationen bekommen nach denen sie suchen | Umfragen beantworten möglich |
+| Besucher | eine Bestätigung bekommen das die Umfrage fertig beantwortet ist | ich weiß das die Umfrage abgeschlossen ist  | Weiterleitung auf After Survey Answering |
+
+| **Als** | **möchte ich** | **so dass** | **Akzeptanz** |
+| :------ | :----- | :------ | :-------- |
+| Nutzer | mich einloggen können | ich Umfragen erstellen und verwalten kann | Einloggen möglich |
+| Nutzer | mich einloggen können | ich Umfragen erstellen und verwalten kann | Einloggen möglich |
+| Nutzer | Umfragen erstellen können | ich die Informationen von den Beantwortern der Umfrage erhalte | Umfragen erstellen möglich |
+| Nutzer | Umfragenergebnisse einsehen | ich die Informationen von den Beantwortern der Umfrage erhalte | Ergebnisse fertiger Umfragen anschauen |
+| Nutzer | die Möglichkeit haben Umfragen beantworten zu können | Umfragenersteller die Informationen bekommen nach denen sie suchen | Umfragen beantworten möglich |
 
 | **Als** | **möchte ich** | **so dass** | **Akzeptanz** |
 | :------ | :----- | :------ | :-------- |
