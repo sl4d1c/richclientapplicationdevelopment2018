@@ -116,18 +116,9 @@ Es soll ein ansprechendes und einfaches Design verwendet werden, um besonders be
 
 ![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/state.png)
 
-## 2.4 Anforderungen im Detail
-    - User Stories mit Akzeptanzkritierien
-    - Optional: Name (oder ID) und Priorität ("Must", "Should", "Could", "Won't")
-    - Strukturierung der User Stories in funktionale Gruppen
+## 2.4 Anforderungen im Detail - User Stories
 
-### Schablone für User Stories
-
-| **Als** | **möchte ich** | **so dass** | **Akzeptanz** |
-| :------ | :----- | :------ | :-------- |
-| Wer | Was | Warum | Wann akzeptiert |
-
-### _________________________________________________________
+#### Besucher
 
 | **Als** | **möchte ich** | **so dass** | **Akzeptanz** |
 | :------ | :----- | :------ | :-------- |
@@ -135,21 +126,17 @@ Es soll ein ansprechendes und einfaches Design verwendet werden, um besonders be
 | Besucher | die Möglichkeit haben Umfragen beantworten zu können | Umfragenersteller die Informationen bekommen nach denen sie suchen | Umfragen beantworten möglich |
 | Besucher | eine Bestätigung bekommen das die Umfrage fertig beantwortet ist | ich weiß das die Umfrage abgeschlossen ist  | Weiterleitung auf After Survey Answering |
 
+#### Registrierte Nutzer
+
 | **Als** | **möchte ich** | **so dass** | **Akzeptanz** |
 | :------ | :----- | :------ | :-------- |
 | Nutzer | mich einloggen können | ich Umfragen erstellen und verwalten kann | Einloggen möglich |
-| Nutzer | mich einloggen können | ich Umfragen erstellen und verwalten kann | Einloggen möglich |
+| Nutzer | mein vergessenes Passwort ändern können | ich mich wieder einloggen kann | Passwort zurücksetzen möglich |
 | Nutzer | Umfragen erstellen können | ich die Informationen von den Beantwortern der Umfrage erhalte | Umfragen erstellen möglich |
+| Nutzer | eine Bestätigung beim Erfolgreichen erstellen meiner Umfrage erhalten | ich weiß, dass die Umfrage auch von anderen beantwortet werden kann | Weiterleiten auf die Seite after create survey |
 | Nutzer | Umfragenergebnisse einsehen | ich die Informationen von den Beantwortern der Umfrage erhalte | Ergebnisse fertiger Umfragen anschauen |
 | Nutzer | die Möglichkeit haben Umfragen beantworten zu können | Umfragenersteller die Informationen bekommen nach denen sie suchen | Umfragen beantworten möglich |
-
-| **Als** | **möchte ich** | **so dass** | **Akzeptanz** |
-| :------ | :----- | :------ | :-------- |
-| Benutzer | bei Erfolg eine Meldung angezeigt bekommen | zufireden bin | Meldung wird angezeigt |
-
-| **Als** | **möchte ich** | **so dass** | **Akzeptanz** |
-| :------ | :----- | :------ | :-------- |
-| Benutzer | bei Ratlosigkeit Hilfe angezeigt bekommen | ich verstehen kann | Hilfe wird angezeigt |
+| Nutzer | eine Bestätigung bekommen das die Umfrage fertig beantwortet ist | ich weiß das die Umfrage abgeschlossen ist  | Weiterleitung auf After Survey Answering |
 
 # 3 Technische Beschreibung
 
