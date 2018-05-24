@@ -81,6 +81,8 @@ Es soll ein ansprechendes und einfaches Design verwendet werden, um besonders be
 
 ![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/Reset%20Mail.png)
 
+##### Send reset Mail
+
 ![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/Send%20Reset%20Mail.png)
 
 
