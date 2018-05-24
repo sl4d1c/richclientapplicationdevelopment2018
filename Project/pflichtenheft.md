@@ -127,13 +127,12 @@ Es soll ein ansprechendes und einfaches Design verwendet werden, um besonders be
 | :------ | :----- | :------ | :-------- |
 | Wer | Was | Warum | Wann akzeptiert |
 
-### Beispiel 1
+### _________________________________________________________
 
 | **Als** | **möchte ich** | **so dass** | **Akzeptanz** |
 | :------ | :----- | :------ | :-------- |
-| Benutzer | bei Fehleingabe die Lösung angezeigt bekommen | ich lernen kann | Lösung wird angezeigt |
-
-### _________________________________________________________
+| Besucher | die Möglichkeit haben mich zu registrieren | ich Umfragen selbst erstellen kann | Registrierung möglich |
+| Besucher | die Möglichkeit haben Umfragen beantworten zu können | Umfragen ersteller die Informationen bekommen nach denen sie suchen | Umfragen beantworten möglich |
 
 | **Als** | **möchte ich** | **so dass** | **Akzeptanz** |
 | :------ | :----- | :------ | :-------- |
@@ -142,14 +141,6 @@ Es soll ein ansprechendes und einfaches Design verwendet werden, um besonders be
 | **Als** | **möchte ich** | **so dass** | **Akzeptanz** |
 | :------ | :----- | :------ | :-------- |
 | Benutzer | bei Ratlosigkeit Hilfe angezeigt bekommen | ich verstehen kann | Hilfe wird angezeigt |
-
-
-### Beispiel 2
-
-| **Name**| **In meiner Rolle als**...|   ...**möchte ich**...   | ..., **so dass**... | **Erfüllt, wenn**... | **Priorität**   |
-|:-----|:----------:|:-------------------|:-------------|:---------|:----------------|
-| Lernen  |Benutzer| bei Fehleingabe die Lösung angezeigt bekommen|ich lernen kann| Lösung wird angezeigt | Muss |
-
 
 # 3 Technische Beschreibung
 
