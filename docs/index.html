@@ -20,25 +20,30 @@
     <script src="https://remarkjs.com/downloads/remark-latest.min.js">
     </script>
     <script>
-        sourceUrls = [
-          'https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/docs/es6.md',
-          'https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/docs/react.md',
-          'https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/docs/npm%26webpack.md',
-          'https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/docs/softwarequality-tooling.md'
-        ]
+      // Place all of your files here
+      //sourceUrls = [
+        'https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/docs/es6.md',
+        'https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/docs/react.md',
+        'https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/docs/npm%26webpack.md',
+        'https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/docs/softwarequality-tooling.md'
+        /]
 
-          var xmlhttp = new XMLHttpRequest();
+        var xmlhttp = new XMLHttpRequest();
 
-          var source = document.getElementById("source")
+        var source = ""
 
-          for (var i = 0; i < sourceUrls.length; i++) {
-            xmlhttp.open('GET', sourceUrls[i], false);
-            xmlhttp.send();
+        for (var i = 0; i < sourceUrls.length; i++) {
+          xmlhttp.open('GET', sourceUrls[i], false);
+          xmlhttp.send();
 
-            source.innerHTML += "\n" + xmlhttp.responseText;
-          };
+          source += xmlhttp.responseText;
 
-          var slideshow = remark.create();
+          // Files shouldn't have --- at the head or foot
+          // It is added automatically here
+          if (i + 1 < sourceUrls.length) {
+            source += "\n---\n"
+          }
+        };
     </script>
   </body>
 </html>
