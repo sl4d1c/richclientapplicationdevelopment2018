@@ -36,8 +36,18 @@ Die Applikation bietet keine templates für Umfragen und ist nicht in der Lage s
 # 2 Anforderungen
 
 ## 2.1 Funktionale Anforderungen
-    - Use-Case Diagramme
-    - Strukturierung der Diagramme in funktionale Gruppen
+
+##### Registrieren
+
+![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/register.png)
+
+##### Einloggen
+
+![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/login.png)
+
+##### Umfragen
+
+![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/survey.png)
 
 ## 2.2 Nicht-funktionale Anforderungen
 
