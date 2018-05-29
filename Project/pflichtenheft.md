@@ -39,15 +39,15 @@ Die Applikation bietet keine templates für Umfragen und ist nicht in der Lage s
 
 ##### Registrieren
 
-![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/register.png)
+![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/diagrams/register.png)
 
 ##### Einloggen
 
-![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/login.png)
+![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/diagrams/login.png)
 
 ##### Umfragen
 
-![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/survey.png)
+![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/diagrams/survey.png)
 
 ## 2.2 Nicht-funktionale Anforderungen
 
@@ -157,7 +157,6 @@ Es soll ein ansprechendes und einfaches Design verwendet werden, um besonders be
 ## 3.1 Systemübersicht
 ##### Systemarchitekturdiagramm ("Box-And-Arrow" Diagramm)
 ![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/diagrams/box-arrow.png)
-       https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/diagrams/box-arrow.png
 
 ##### Schnittstellenbeschreibung
 Die einzelnen Komponenten sind Client, Server und Datenbank. Der Client hat nur eine https-Schnittstelle zum Server, der Server hat eine Anbinbung zur Datenbank und verarbeitet dann die Anfragen des Clients.
