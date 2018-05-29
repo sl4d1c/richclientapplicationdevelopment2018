@@ -155,25 +155,30 @@ Es soll ein ansprechendes und einfaches Design verwendet werden, um besonders be
 # 3 Technische Beschreibung
 
 ## 3.1 Systemübersicht
-    - Systemarchitekturdiagramm ("Box-And-Arrow" Diagramm)
-    - Schnittstellenbeschreibung
-    - Kommunikationsprotokolle, Datenformate
+##### Systemarchitekturdiagramm ("Box-And-Arrow" Diagramm)
+![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/diagrams/box-arrow.png)
+
+##### Schnittstellenbeschreibung
+Die einzelnen Komponenten sind Client, Server und Datenbank. Der Client hat nur eine https-Schnittstelle zum Server, der Server hat eine Anbinbung zur Datenbank und verarbeitet dann die Anfragen des Clients.
+
+##### Kommunikationsprotokolle, Datenformate
+Zur Kommunikation zwischen Client und Server wird das https Protokoll verwendet, da es zusätzliche Sicherheit bietet. Die Umfragedaten werden dann in einem Json Format in der MongoDB gespeichert.
 
 ## 3.2 Softwarearchitektur
-    - Darstellung von Softwarebausteinen (Module, Schichten, Komponenten)
+##### Software Architektur
+![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/diagrams/software-architektur.png)
 
 ## 3.3 Datenmodell
     - Konzeptionelles Analyseklassendiagramm
 
 ## 3.4 Abläufe
+##### Aktivität "register"
+![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/diagrams/activity_register.png)
+##### Aktivität "Umfragen"
+![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/diagrams/activity_umfragen.png)
 
-#### Login
-
-![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/login_activity.png)
-
-## 3.5 Entwurf
-    - Detaillierte UML-Diagramme für relevante Softwarebausteine
-
+    - Aktivitätsdiagramm für den Ablauf sämtlicher Use Cases
+    
 # 4 Projektorganisation
 
 ## 4.1 Annahmen
