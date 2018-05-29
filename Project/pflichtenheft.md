@@ -218,8 +218,11 @@ sind gleichberechtigt und stehen zu gleicher Maßen in der Verantwortung.
 ## 4.3 Grober Projektplan
 ##### Meilensteine
 01.06.18  Start der Implementierung
+
 15.06.18  fertige Infrastruktur
+
 29.06.18  fertige Clientimplementierung
+
 23.07.18  Abgabe
 
 # 5 Anhänge
@@ -227,6 +230,7 @@ sind gleichberechtigt und stehen zu gleicher Maßen in der Verantwortung.
 ## 5.1 Glossar
 ##### Definitionen, Abkürzungen, Begriffe
 Besucher: nicht regestrierter Nutzer
+
 Nutzer: regestrierter Nutzer
 
 ## 5.2 Referenzen
