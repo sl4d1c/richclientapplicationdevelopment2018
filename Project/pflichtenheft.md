@@ -156,16 +156,16 @@ Es soll ein ansprechendes und einfaches Design verwendet werden, um besonders be
 
 ## 3.1 Systemübersicht
 ##### Systemarchitekturdiagramm ("Box-And-Arrow" Diagramm)
+![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/box-arrow.png)
 
 ##### Schnittstellenbeschreibung
-Die einzelnen Komponenten sind client, server und db. der client hat nur eine http Schnittstelle zum Server, der Server hat eine Anbinbung zur Datenbank
-und verarbeitet dann die Anfragen des Clients.
+Die einzelnen Komponenten sind Client, Server und Datenbank. Der Client hat nur eine https-Schnittstelle zum Server, der Server hat eine Anbinbung zur Datenbank und verarbeitet dann die Anfragen des Clients.
 
 ##### Kommunikationsprotokolle, Datenformate
-http/s cvs 
+Zur Kommunikation zwischen Client und Server wird das https Protokoll verwendet, da es zusätzliche Sicherheit bietet. Die Umfragedaten werden dann in einem Json Format in der MongoDB gespeichert.
 
 ## 3.2 Softwarearchitektur
-    - Darstellung von Softwarebausteinen (Module, Schichten, Komponenten)
+![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/software-architektur.png)
 
 ## 3.3 Datenmodell
     - Konzeptionelles Analyseklassendiagramm
