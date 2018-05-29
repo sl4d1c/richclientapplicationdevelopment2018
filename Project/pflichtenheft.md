@@ -169,7 +169,7 @@ Zur Kommunikation zwischen Client und Server wird das https Protokoll verwendet,
 ![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/diagrams/software-architektur.png)
 
 ## 3.3 Datenmodell
-    - Konzeptionelles Analyseklassendiagramm
+![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/diagrams/klassen.png)
 
 ## 3.4 Abläufe
 ##### Aktivität "register"
