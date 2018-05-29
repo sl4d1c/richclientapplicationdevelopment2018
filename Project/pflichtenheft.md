@@ -73,60 +73,60 @@ Es soll ein ansprechendes und einfaches Design verwendet werden, um besonders be
 
 ##### Start
 
-![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/Main%20frame.png)
+![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/mockups/Main%20frame.png)
 
 ##### Registration
 
-![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/Register.png)
+![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/mockups/Register.png)
 
 ##### Login
 
-![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/Login.png)
+![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/mockups/Login.png)
 
 ##### Home
 
-![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/Main%20frame%20after%20Login.png)
+![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/mockups/Main%20frame%20after%20Login.png)
 
 ##### Reset Password
 
-![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/Reset%20Mail.png)
+![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/mockups/Reset%20Mail.png)
 
 ##### Send reset Mail
 
-![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/Send%20Reset%20Mail.png)
+![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/mockups/Send%20Reset%20Mail.png)
 
 
 ##### Settings
 
-![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/Settings.png)
+![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/mockups/Settings.png)
 
 ##### My Surveys
 
-![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/My%20Surveys.png)
+![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/mockups/My%20Surveys.png)
 
 ##### Answer survey
 
-![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/Answer%20Survey.png)
+![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/mockups/Answer%20Survey.png)
 
 ##### After survey answering
 
-![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/Answering%20Thanks.png)
+![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/mockups/Answering%20Thanks.png)
 
 ##### Create Survey
 
-![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/Create%20Survey.png)
+![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/mockups/Create%20Survey.png)
 
 ##### After Create Survey
 
-![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/After%20Survey%20Creation.png)
+![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/mockups/After%20Survey%20Creation.png)
 
 ##### Survey Result
 
-![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/Survey%20Results.png)
+![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/mockups/Survey%20Results.png)
 
 ##### Zustandsdiagramm
 
-![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/state.png)
+![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/mockups/state.png)
 
 ## 2.4 Anforderungen im Detail - User Stories
 
@@ -156,7 +156,7 @@ Es soll ein ansprechendes und einfaches Design verwendet werden, um besonders be
 
 ## 3.1 Systemübersicht
 ##### Systemarchitekturdiagramm ("Box-And-Arrow" Diagramm)
-![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/box-arrow.png)
+![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/diagrams/box-arrow.png)
 
 ##### Schnittstellenbeschreibung
 Die einzelnen Komponenten sind Client, Server und Datenbank. Der Client hat nur eine https-Schnittstelle zum Server, der Server hat eine Anbinbung zur Datenbank und verarbeitet dann die Anfragen des Clients.
@@ -165,13 +165,17 @@ Die einzelnen Komponenten sind Client, Server und Datenbank. Der Client hat nur 
 Zur Kommunikation zwischen Client und Server wird das https Protokoll verwendet, da es zusätzliche Sicherheit bietet. Die Umfragedaten werden dann in einem Json Format in der MongoDB gespeichert.
 
 ## 3.2 Softwarearchitektur
-![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/software-architektur.png)
+##### Software Architektur
+![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/diagrams/software-architektur.png)
 
 ## 3.3 Datenmodell
     - Konzeptionelles Analyseklassendiagramm
 
 ## 3.4 Abläufe
-![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/activity_register.png)
+##### Aktivität "register"
+![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/diagrams/activity_register.png)
+![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/diagrams/activity_umfragen.png)
+
     - Aktivitätsdiagramm für den Ablauf sämtlicher Use Cases
 
 # 4 Projektorganisation
