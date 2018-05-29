@@ -178,7 +178,7 @@ Zur Kommunikation zwischen Client und Server wird das https Protokoll verwendet,
 ![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/diagrams/activity_umfragen.png)
 
     - Aktivitätsdiagramm für den Ablauf sämtlicher Use Cases
-    
+
 # 4 Projektorganisation
 
 ## 4.1 Annahmen
