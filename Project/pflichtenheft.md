@@ -155,9 +155,14 @@ Es soll ein ansprechendes und einfaches Design verwendet werden, um besonders be
 # 3 Technische Beschreibung
 
 ## 3.1 Systemübersicht
-    - Systemarchitekturdiagramm ("Box-And-Arrow" Diagramm)
-    - Schnittstellenbeschreibung
-    - Kommunikationsprotokolle, Datenformate
+##### Systemarchitekturdiagramm ("Box-And-Arrow" Diagramm)
+
+##### Schnittstellenbeschreibung
+Die einzelnen Komponenten sind client, server und db. der client hat nur eine http Schnittstelle zum Server, der Server hat eine Anbinbung zur Datenbank
+und verarbeitet dann die Anfragen des Clients.
+
+##### Kommunikationsprotokolle, Datenformate
+http/s cvs 
 
 ## 3.2 Softwarearchitektur
     - Darstellung von Softwarebausteinen (Module, Schichten, Komponenten)
