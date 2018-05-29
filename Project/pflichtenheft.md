@@ -181,37 +181,57 @@ Zur Kommunikation zwischen Client und Server wird das https Protokoll verwendet,
 ##### Aktivität "Umfragen"
 ![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/diagrams/activity_umfragen.png)
 
-    - Aktivitätsdiagramm für den Ablauf sämtlicher Use Cases
+##### Aktivität use cases
 
 # 4 Projektorganisation
 
 ## 4.1 Annahmen
     - Nicht durch den Kunden definierte spezifische Annahmen, Anforderungen und Abhängigkeiten
 
-    - Verwendete Technologien (Programmiersprache, Frameworks, etc.)
-    javascript, nodeJS, React parse-communtiy server, MongoDB
+##### Verwendete Technologien (Programmiersprache, Frameworks, etc.)
+Als Grundlage für das Projekt dient die React Bibliothek. Dies ist eine javascript
+Bibliothek. Als Server dient der parse-server, dies ist eine Server Architektur, welche
+eine Anbindung zu einer MongoDB bietet. Der parse-server benötigt nodeJS, die
+komplette Architektur wird in einer Docker Maschine laufen. Zur Speicherung und
+Archivierung wird MongoDB verwendet.
 
-    - Einschränkungen, Betriebsbedingungen und Faktoren, die die Entwicklung beeinflussen (Betriebssysteme, Entwicklungsumgebung)
-    Einarbeitung in eine unbekannte Technologie, neue Technologie => wenige Beispiele
+##### Einschränkungen, Betriebsbedingungen und Faktoren, die die Entwicklung beeinflussen (Betriebssysteme, Entwicklungsumgebung)
+Als problematisch könnte sich die Einarbeitung in eine neue Technologie wie React
+erweisen. Die Verwendung von einem Container System wie Docker birgt auch einige
+Risiken. Zudem sind da auch andere Projekte, welche fristgerecht zu erledigen sind,
+da könnten auch Konflikte im Zeitmanagement entstehen.
 
-    - Interne Qualitätsanforderungen (z.B. Softwarequalitätsmerkmale wie z.B. Erweiterbarkeit)
+##### Interne Qualitätsanforderungen (z.B. Softwarequalitätsmerkmale wie z.B. Erweiterbarkeit)
+Es ist denkbar, dieses Projekt im Nachhinein kommerziell zu Nutzen. Zu diesem Zweck
+ist es wichtig auf die Qualität und die Erweiterbarkeit zu achten.
 
 ## 4.2 Verantwortlichkeiten
-    - Zuordnung von Personen zu Softwarebausteinen aus Kapitel 3.1 und 3.2
-    - Rollendefinition und Zuordnung
+##### Zuordnung von Personen zu Softwarebausteinen aus Kapitel 3.1 und 3.2
+Für die Infrastruktur, sprich Server und Datenbank ist S. Dick verantwortlich.
+Sobald die Infrastruktur steht wird er sich an der Clientimplementierung beteiligen.
+Für die Clientimplementierung ist A. Kul'Bashny
+
+##### Rollendefinition und Zuordnung
+Dieses ist ein gemeintschatliches Projekt von A. Kul'Bashny und S. Dick, beide
+sind gleichberechtigt und stehen zu gleicher Maßen in der Verantwortung.
 
 ## 4.3 Grober Projektplan
-    - Meilensteine
-    Infrastruktur 15.6
-    Clientimplementierung 29.6
-    Abgabe Juli
+##### Meilensteine
+01.06.18  Start der Implementierung
+15.06.18  fertige Infrastruktur
+29.06.18  fertige Clientimplementierung
+23.07.18  Abgabe
 
 # 5 Anhänge
 
 ## 5.1 Glossar
-    - Definitionen, Abkürzungen, Begriffe
+##### Definitionen, Abkürzungen, Begriffe
+Besucher: nicht regestrierter Nutzer
+Nutzer: regestrierter Nutzer
 
 ## 5.2 Referenzen
-    - Handbücher, Gesetze
+##### Handbücher, Gesetze
+[parse-server](https://github.com/fullstackreact/food-lookup-demo)
+
 
 ## 5.3 Index
