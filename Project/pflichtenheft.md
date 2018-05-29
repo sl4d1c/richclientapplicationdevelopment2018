@@ -126,7 +126,7 @@ Es soll ein ansprechendes und einfaches Design verwendet werden, um besonders be
 
 ##### Zustandsdiagramm
 
-![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/mockups/state.png)
+![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/diagrams/state.png)
 
 ## 2.4 Anforderungen im Detail - User Stories
 
@@ -157,6 +157,7 @@ Es soll ein ansprechendes und einfaches Design verwendet werden, um besonders be
 ## 3.1 Systemübersicht
 ##### Systemarchitekturdiagramm ("Box-And-Arrow" Diagramm)
 ![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/diagrams/box-arrow.png)
+       https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/diagrams/box-arrow.png
 
 ##### Schnittstellenbeschreibung
 Die einzelnen Komponenten sind Client, Server und Datenbank. Der Client hat nur eine https-Schnittstelle zum Server, der Server hat eine Anbinbung zur Datenbank und verarbeitet dann die Anfragen des Clients.
