@@ -171,7 +171,7 @@ Zur Kommunikation zwischen Client und Server wird das https Protokoll verwendet,
     - Konzeptionelles Analyseklassendiagramm
 
 ## 3.4 Abläufe
-    - Aktivitätsdiagramme für relevante Use Cases
+![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/aktivitätsdiagramm.png)
     - Aktivitätsdiagramm für den Ablauf sämtlicher Use Cases
 
 ## 3.5 Entwurf
