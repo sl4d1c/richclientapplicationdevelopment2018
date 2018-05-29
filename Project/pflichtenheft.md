@@ -166,8 +166,10 @@ Es soll ein ansprechendes und einfaches Design verwendet werden, um besonders be
     - Konzeptionelles Analyseklassendiagramm
 
 ## 3.4 Abläufe
-    - Aktivitätsdiagramme für relevante Use Cases
-    - Aktivitätsdiagramm für den Ablauf sämtlicher Use Cases
+
+#### Login
+
+![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/login_activity.png)
 
 ## 3.5 Entwurf
     - Detaillierte UML-Diagramme für relevante Softwarebausteine
