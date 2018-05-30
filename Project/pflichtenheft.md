@@ -128,6 +128,8 @@ Es soll ein ansprechendes und einfaches Design verwendet werden, um besonders be
 
 ![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/diagrams/state.png)
 
+####### Farbige Pfeile dienen der Übersicht, um kreuzende Pfeile besser unterscheiden zu können.  
+
 ## 2.4 Anforderungen im Detail - User Stories
 
 #### Besucher
