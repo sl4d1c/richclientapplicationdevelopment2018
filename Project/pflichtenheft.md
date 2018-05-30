@@ -172,7 +172,7 @@ Zur Kommunikation zwischen Client und Server wird das https Protokoll verwendet,
 ![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/diagrams/software-architektur.png)
 
 ## 3.3 Datenmodell
-![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/diagrams/klassen.png)
+![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/diagrams/klassen_neu.png)
 
 ## 3.4 Abläufe
 ##### Aktivität "register"
@@ -182,7 +182,7 @@ Zur Kommunikation zwischen Client und Server wird das https Protokoll verwendet,
 ![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/diagrams/login_activity.png)
 
 ##### Aktivität "Umfragen"
-![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/diagrams/activity_umfragen.png)
+![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/diagrams/activity_umfragen_neu.png)
 
 ##### Aktivität use cases
 
