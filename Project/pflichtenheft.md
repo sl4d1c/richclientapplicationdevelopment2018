@@ -49,10 +49,6 @@ Die Applikation bietet keine templates für Umfragen und ist nicht in der Lage s
 
 ![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/diagrams/survey.png)
 
-#### Überblick
-
-![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/diagrams/activity_overview.png)
-
 
 ## 2.2 Nicht-funktionale Anforderungen
 
@@ -190,10 +186,9 @@ Zur Kommunikation zwischen Client und Server wird das https Protokoll verwendet,
 
 ##### Aktivität use cases
 
-# 4 Projektorganisation
+![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/diagrams/activity_overview.png)
 
-## 4.1 Annahmen
-    - Nicht durch den Kunden definierte spezifische Annahmen, Anforderungen und Abhängigkeiten
+# 4 Projektorganisation
 
 ##### Verwendete Technologien (Programmiersprache, Frameworks, etc.)
 Als Grundlage für das Projekt dient die React Bibliothek. Dies ist eine javascript
