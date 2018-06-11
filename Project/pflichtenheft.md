@@ -159,7 +159,7 @@ Farbige Pfeile dienen der Übersicht, um kreuzende Pfeile besser unterscheiden z
 
 ## 3.1 Systemübersicht
 ##### Systemarchitekturdiagramm ("Box-And-Arrow" Diagramm)
-![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/diagrams/box-arrow.png)
+![file not found](https://github.com/sl4d1c/richclientapplicationdevelopment2018/blob/master/pictures/diagrams/BoxAndArrow.png)
 
 ##### Schnittstellenbeschreibung
 Die einzelnen Komponenten sind Client, Server und Datenbank. Der Client hat nur eine https-Schnittstelle zum Server, der Server hat eine Anbinbung zur Datenbank und verarbeitet dann die Anfragen des Clients.
