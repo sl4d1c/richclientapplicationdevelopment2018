@@ -1,0 +1,135 @@
+import React, { Component } from 'react';
+
+import TextField from '@material-ui/core/TextField';
+import Divider from '@material-ui/core/Divider';
+import Button from '@material-ui/core/Button';
+
+
+export default class Question extends Component {
+    constructor() {
+        super();
+        this.state = {
+            data: [],
+            key: 0,
+            valueKey: 0,
+            answer: '',
+            answers: [],
+            question: '',
+            answerData: {}
+        }
+    };
+
+
+  static propTypes = {
+
+  };
+
+  removeAnswer = (key) => {
+    let result = this.state.data.filter( (data) => data.key !== key);
+    this.setState({
+      data: result,
+    });
+  }
+
+  addAnswer = () => {
+      if (this.state.answer !== '') {
+          this.addAnswerValue();
+      }
+
+    let new_added_answer = {
+        key: this.state.key,
+    };
+
+      this.setState({
+          data: [...this.state.data, new_added_answer],
+          key: this.state.key + 1,
+      });
+  }
+
+  addAnswerValue = () => {
+      this.setState({
+          answers: [...this.state.answers, this.state.answer],
+          key: this.state.valueKey + 1,
+      });
+  }
+
+  onTextboxChangeAnswer = (event) => {
+      this.setState({answer: event.target.value});
+  }
+
+  onTextboxChangeQuestion = (event) => {
+      this.setState({question: event.target.value});
+  }
+
+  catchingLastAnswer = () => {
+      if (this.state.answer !== '') {
+          this.addAnswerValue();
+      }
+  };
+
+  prepareQuestionObject = () => {
+      let result = {
+          id: this.props.objId,
+          question: this.state.question,
+          type: this.props.type,
+          answers: this.state.answers
+      };
+      return result;
+  };
+
+  saveQuestion = (question) => {
+      console.log(question);
+      this.props.setData(question);
+  };
+
+  onSetData = () => {
+      this.catchingLastAnswer();
+      let question = this.prepareQuestionObject();
+      this.saveQuestion(question);
+  };
+
+  render() {
+    let removeQuestion = this.props.removeQuestion;
+
+    let addedAnswersGoHere = this.state.data.map( (data, index) => {
+        return (
+          <div key={data.key}>
+            <TextField style={{marginTop: '2%'}} placeholder="Answer" onChange={this.onTextboxChangeAnswer} />
+            <Button variant="contained" color="primary" onClick={() => this.removeAnswer(data.key)} style={{marginLeft: '2%'}}>Delete</Button>
+          </div>
+        )
+    });
+    return (
+        <div>
+            {this.props.type}
+
+            <TextField
+                style={{marginTop: '2%'}}
+                placeholder="Question"
+                fullWidth="true"
+                multiline={true}
+                onChange={this.onTextboxChangeQuestion}
+            />
+
+            <br></br>
+
+            {addedAnswersGoHere}
+
+            {this.props.type === "Text" ? (
+            <div style={{marginTop: '2%', marginLeft: '65%'}}>
+                <Button disabled="true" variant="contained" color="primary" style={{ marginRight: '2%'}}>Add new Answer</Button>
+                <Button variant="contained" color="primary" onClick={() => removeQuestion(this.props.questionKey)}>Delete Question</Button>
+                <Button variant="contained" color="primary" onClick={() => this.onSetData()}>Finish</Button>
+            </div>
+            ) : (
+            <div style={{marginTop: '2%', marginLeft: '65%'}}>
+                <Button variant="contained" color="primary" onClick={this.addAnswer} style={{ marginRight: '2%'}}>Add new Answer</Button>
+                <Button variant="contained" color="primary" onClick={() => removeQuestion(this.props.questionKey)}>Delete Question</Button>
+                <Button variant="contained" color="primary" onClick={() => this.onSetData()}>Finish</Button>
+            </div>
+            )}
+            <Divider style={{marginTop: '2%'}}/>
+        </div>
+    );
+  }
+}
