@@ -106,7 +106,7 @@ module.exports = (app) => {
                             id: id,
                             name: element.title,
                             duration: element.creationDate,
-                            answerLink: 'http://localhost:6075/survey?_id=' + element._id,
+                            answerLink: 'http://localhost:6075/survey?title=' + element.title,
                             results: 'http://localhost:6075/survey-analysis?userId=' + element.userId
                         };
                         data.push(result);
@@ -163,16 +163,19 @@ module.exports = (app) => {
     app.post('/api/survey/getAnsweredSurvey', (req, res, next) => {
         const title = req.body.title;
         console.log(title);
-        answeredSurvey.findById(title)
+        answeredSurvey.find({title: title})
             .exec()
             .then(doc => {
                 console.log(doc);
                 if(doc) {
+                    data = [];
+                    doc.forEach(function(element) {
+                        data.push(element.data);
+                    });
                     //res.status(200).json(doc)
                     res.send({
                         success: true,
-                        title: doc.title,
-                        data: doc.data
+                        data: data
                     });
                 }
                 else {

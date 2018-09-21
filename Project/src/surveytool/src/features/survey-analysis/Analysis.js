@@ -36,11 +36,44 @@ const data_on_answer2 = [
 const allAnswers = createData('Your opinion on stuff', [data_on_answer1, data_on_answer2]);
 
 export class Analysis extends Component {
+  constructor() {
+    super();
+    this.state = {
+      data: [],
+        title:''
+
+    }
+  }
+
+    componentDidMount() {
+        let url = window.location.href;
+        let urlArray = url.split('=');
+        let title = urlArray[1];
+        fetch('/api/survey/getAnswerdSurvey', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                title: title
+            })
+        })
+            .then(res =>  res.json())
+            .then(json => {
+                if (json.success) {
+                    this.setState({
+                        data: json.data,
+                        title: title
+                    });
+                }});
+        console.log('fetched data => ', this.state.data);
+        console.log('static class data => ', allAnswers);
+    }
+
   static propTypes = {
     surveyAnalysis: PropTypes.object.isRequired,
     actions: PropTypes.object.isRequired,
   };
-
 
   createOutput = (answerArray) => {
     let answersFormatted = [];

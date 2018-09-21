@@ -25,7 +25,6 @@ export class Survey extends Component {
 
     constructor() {
         super();
-        console.log('url => ', window.location.href);
         this.state = {
             currentIndex: 1,
             id: 1,
