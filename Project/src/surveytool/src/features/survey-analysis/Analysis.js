@@ -33,14 +33,15 @@ const data_on_answer2 = [
   createDataOneQuestion('Do you like Multiple Choice?', ['yes', 'no', 'maybe'], ['yes']),
 ];
 
-const allAnswers = createData('Your opinion on stuff', [data_on_answer1, data_on_answer2]);
+//const allAnswers = createData('Your opinion on stuff', [data_on_answer1, data_on_answer2]);
 
 export class Analysis extends Component {
   constructor() {
     super();
     this.state = {
       data: [],
-        title:''
+        title:'',
+        isLoading: true,
 
     }
   }
@@ -48,14 +49,14 @@ export class Analysis extends Component {
     componentDidMount() {
         let url = window.location.href;
         let urlArray = url.split('=');
-        let title = urlArray[1];
-        fetch('/api/survey/getAnswerdSurvey', {
+        let surveyId = urlArray[1];
+        fetch('/api/survey/getAnsweredSurvey', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                title: title
+                surveyId: surveyId
             })
         })
             .then(res =>  res.json())
@@ -63,11 +64,12 @@ export class Analysis extends Component {
                 if (json.success) {
                     this.setState({
                         data: json.data,
-                        title: title
+                        title: json.title,
+                        isLoading: false
                     });
                 }});
         console.log('fetched data => ', this.state.data);
-        console.log('static class data => ', allAnswers);
+        //console.log('static class data => ', allAnswers);
     }
 
   static propTypes = {
@@ -75,52 +77,101 @@ export class Analysis extends Component {
     actions: PropTypes.object.isRequired,
   };
 
-  createOutput = (answerArray) => {
-    let answersFormatted = [];
-    let count = 0;
+    singleAnswerForQuestion = (answerArray, index) => {
+        let answersUnformatted = [];
+        let result = [];
+        let possibleAnswers = answerArray[0][index].possibleAnswers;
+        for(let i = 0; i < answerArray.length; i++){
+            console.log("count: " + index + " i: " + i + " " + answerArray[i][index].question + " " + answerArray[i][index].answers);
+            let answerName = answerArray[i][index].answers[0];
+            answersUnformatted.push(answerName);
+            //Die question hinten einfach an answersUnformatted hängen
+            if((answerArray.length - 1) === i){
+                answersUnformatted.push(answerArray[i][index].question);
+            }
+        }
+        console.log(answersUnformatted);
+        let formatted = this.format(answersUnformatted, possibleAnswers);
+        console.log(formatted);
+        result['question'] = answersUnformatted[answersUnformatted.length - 1];
+        result['answers'] = formatted;
 
-    for(let i = 0; i < answerArray.length; i++){
-      alert(answerArray[i][count].question);
+        return result;
+        //return formatted;
+    };
+
+
+    format = (unformatted, possibleAnswers) => {
+        let formatted = [];
+
+        var count = (input, arr) => arr.filter(x => x === input).length;
+        //question wird vom count ignoriert - wie weiter?
+        for (let i = 0; i < possibleAnswers.length; i++) {
+            if(count(possibleAnswers[i], unformatted) !== 0){
+                formatted.push({ angle: count(possibleAnswers[i], unformatted), label: unformatted[i] });
+            }
+        }
+        return formatted;
     }
 
-    //So muss das nachher aussehen, angle ist der anteil und lable ist was dran steht
-    answersFormatted = [
-      {angle: 6, label: "derp"}, 
-      {angle: 5},
-      {angle: 2}
-    ];
-    return answersFormatted;
-  }
+    allCakeData = (answerArray) => {
+        let allCakeData = [];
+
+        for(let index = 0; index < answerArray[0].length; index++) {
+            allCakeData.push(this.singleAnswerForQuestion(this.state.data, index));
+            console.log("----");
+
+        }
+
+        console.log(allCakeData);
+        return allCakeData;
+    }
 
   render() {
-    return (
-      
-      <div style={{ height: '100%', width: '100%', backgroundColor: '#3366ff', position: 'fixed' }}>
-      <link rel="stylesheet" href="https://unpkg.com/react-vis/dist/style.css"></link>
-        <Header />
-        <div
-          style={{
-            height: '100%',
-            width: '60%',
-            backgroundColor: '#ffffff',
-            position: 'fixed',
-            marginLeft: '20%',
-          }}
-        >
-          <div style={{height: '86%', width: '60%', position: 'fixed', overflow: 'auto'}}>
-            <h1>{allAnswers.titel}</h1>
-            <h2>{allAnswers.answers.question}</h2>
-            <RadialChart
-              width={300}
-              height={300}
-              showLabels={true}
-              data={this.createOutput(allAnswers.answers)}>
-          </RadialChart>
-          </div>
-        </div>
-      </div>
-    );
-  }
+        if (this.state.isLoading) {
+            return (<div>loading ...</div>);
+        } else {
+            let cakes = this.allCakeData(this.state.data).map(data => {
+                if(data.answers.length > 0) {
+                    return (
+                        <div>
+                            <h2>{data.question}</h2>
+                            <RadialChart
+                                width={300}
+                                height={300}
+                                showLabels={true}
+                                data={data.answers}>
+                            </RadialChart>
+                        </div>
+                    );
+                } else {
+                    return (<div></div>);
+                }
+            });
+            return (
+
+                <div style={{ height: '100%', width: '100%', backgroundColor: '#3366ff', position: 'fixed' }}>
+                    <link rel="stylesheet" href="https://unpkg.com/react-vis/dist/style.css"></link>
+                    <Header />
+                    <div
+                        style={{
+                            height: '100%',
+                            width: '60%',
+                            backgroundColor: '#ffffff',
+                            position: 'fixed',
+                            marginLeft: '20%',
+                        }}
+                    >
+                        <div style={{height: '86%', width: '60%', position: 'fixed', overflow: 'auto'}}>
+                            <h1>{this.state.titel}</h1>
+                            {cakes}
+                        </div>
+                    </div>
+                </div>
+            );
+        }
+        }
+
 }
 
 /* istanbul ignore next */

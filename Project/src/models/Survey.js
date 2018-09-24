@@ -5,8 +5,7 @@ const SurveySchema = new mongoose.Schema({
       type: mongoose.Schema.Types.ObjectId
     },
     userId: {
-      type: String,
-      default: ''
+      type: mongoose.Schema.Types.ObjectId
     },
     title: {
       type: String,

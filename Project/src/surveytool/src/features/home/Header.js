@@ -35,21 +35,26 @@ const styles = {
 };
 
 class Header extends React.Component {
-  state = {
-    openLogin: false,
-    openRegister: false,
-    openDebug: false,
-    login: false,
-    signUpUsername: '',
-    signUpPassword: '',
-    signUpPasswordVerify: '',
-    signUpEmail: '',
-    signInUsername:'',
-    signInPassword:'',
-    token: '',
-    signUpError: '',
-    signInError: ''
-  };
+    constructor() {
+        super();
+        this.state = {
+            openLogin: false,
+            openRegister: false,
+            openDebug: false,
+            login: false,
+            signUpUsername: '',
+            signUpPassword: '',
+            signUpPasswordVerify: '',
+            signUpEmail: '',
+            signInUsername:'',
+            signInPassword:'',
+            token: '',
+            signUpError: '',
+            signInError: ''
+        };
+    }
+
+
 
   componentDidMount() {
       const obj = getFromStorage('the_main_app');
@@ -62,6 +67,7 @@ class Header extends React.Component {
                   if (json.success) {
                       this.setState({
                           token,
+                          login: true
                       });
                   } else {
                       this.setState({
@@ -422,7 +428,7 @@ class Header extends React.Component {
 
                 <Button color="inherit" href="settings">Settings</Button>
 
-                <Button color="inherit" onClick={this.logout}>
+                <Button color="inherit" onClick={this.logout} href="home">
                   Logout
                 </Button>
               </div>

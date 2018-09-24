@@ -215,8 +215,8 @@ export class MySurveys extends Component {
                                                   {n.name}
                                               </TableCell>
                                               <TableCell>{n.duration}</TableCell>
-                                              <TableCell>{n.answerLink}</TableCell>
-                                              <TableCell>{n.results}</TableCell>
+                                              <TableCell numeric component="a" href={n.answerLink}>Link to {n.name}</TableCell>
+                                              <TableCell numeric component="a" href={n.results}>Link to Result of {n.name}</TableCell>
                                           </TableRow>
                                       );
                                   })}

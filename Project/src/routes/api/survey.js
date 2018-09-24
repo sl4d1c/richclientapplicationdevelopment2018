@@ -106,8 +106,8 @@ module.exports = (app) => {
                             id: id,
                             name: element.title,
                             duration: element.creationDate,
-                            answerLink: 'http://localhost:6075/survey?title=' + element.title,
-                            results: 'http://localhost:6075/survey-analysis?userId=' + element.userId
+                            answerLink: 'http://localhost:6075/survey?_id=' + element._id,
+                            results: 'http://localhost:6075/survey-analysis?surveyId=' + element._id
                         };
                         data.push(result);
                         id++;
@@ -161,9 +161,10 @@ module.exports = (app) => {
     });
 
     app.post('/api/survey/getAnsweredSurvey', (req, res, next) => {
-        const title = req.body.title;
-        console.log(title);
-        answeredSurvey.find({title: title})
+        console.log('in get Answerd surveys');
+        const surveyId = req.body.surveyId;
+        console.log(surveyId);
+        answeredSurvey.find({surveyId: surveyId})
             .exec()
             .then(doc => {
                 console.log(doc);
@@ -181,7 +182,7 @@ module.exports = (app) => {
                 else {
                     res.status(404).json({
                         message: 'no survey found',
-                        param: title
+                        param: surveyId
                     });
                 }
             })
@@ -195,7 +196,8 @@ module.exports = (app) => {
         const { body } = req;
       let {
           title,
-          data
+          data,
+          surveyId
       } = body;
 
       if (!data) {
@@ -205,28 +207,11 @@ module.exports = (app) => {
         });
       }
 
-      // Steps: TODO
-      // 1. Verify survey doesn't exist
-      // 2. Save
-      answeredSurvey.find({
-        data: data
-      }, (err, previousSurvey) => {
-        if (err) {
-          return res.send({
-            success: false,
-            message: 'Error: Server error'
-          });
-        } else if (previousSurvey.length > 0) {
-          return res.send({
-            success: false,
-            message: 'Error: Survey already exist.'
-          });
-        }
-
         // Save the new survey
         const newAnsweredSurvey = new answeredSurvey();
 
         newAnsweredSurvey._id = new mongoose.Types.ObjectId();
+        newAnsweredSurvey.surveyId = surveyId;
         newAnsweredSurvey.title = title;
         newAnsweredSurvey.data = data;
         newAnsweredSurvey.save((err, user) => {
@@ -241,6 +226,5 @@ module.exports = (app) => {
             message: 'saved'
           });
         });
-      });
     });
 }

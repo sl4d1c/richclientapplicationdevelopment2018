@@ -4,6 +4,9 @@ const AnsweredSurveySchema = new mongoose.Schema({
     _id: {
       type: mongoose.Schema.Types.ObjectId
     },
+    surveyId: {
+      type: mongoose.Schema.Types.ObjectId
+    },
     title: {
       type: String,
       default: ''
