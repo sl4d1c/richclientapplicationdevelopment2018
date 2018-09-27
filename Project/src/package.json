@@ -7,7 +7,7 @@
     "client-install": "cd surveytool && npm install",
     "start": "node server.js",
     "server": "nodemon server.js",
-    "client": "npm start --prefix surveytool",
+    "client": "npm run start --prefix surveytool",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "Artem",
@@ -17,8 +17,10 @@
   },
   "dependencies": {
     "bcrypt": "^3.0.0",
+    "body-parser": "^1.18.3",
     "concurrently": "^3.5.1",
     "express": "^4.16.2",
-    "mongoose": "^5.2.16"
+    "mongoose": "^5.2.16",
+    "nodemailer": "^4.6.8"
   }
 }

@@ -50,6 +50,24 @@ export class Settings extends Component {
                       //this.setState({});
                   }
               });
+      } else {
+          let url = window.location.href;
+          let urlArray = url.split('=');
+          let userId = urlArray[1];
+
+          this.setState({userId: userId});
+          fetch('/api/getUser?userId=' + userId)
+              .then(res => res.json())
+              .then(json => {
+                  if (json.success) {
+                      this.setState({
+                          username: json.username,
+                          email: json.email
+                      });
+                  } else {
+                      //this.setState({});
+                  }
+              });
       }
   };
 

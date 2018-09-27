@@ -3,6 +3,7 @@ const UserSession = require('../../models/UserSession');
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
+const nodemailer = require('nodemailer');
 
 
 module.exports = (app) => {
@@ -373,6 +374,76 @@ module.exports = (app) => {
         }
       }
     });
+  });
+
+  app.post('/api/account/resetPassword', (req, res, next) => {
+    const username = req.body.username;
+    const email = req.body.email;
+
+    User.find({username: username}, (err, users) => {
+        if (err) {
+            console.log('err 2:', err);
+            return res.status(401).send({
+                success: false,
+                message: 'Error: server error'
+            });
+        }
+        if (users.length != 1) {
+            return res(403).send({
+                success: false,
+                message: 'Error: Invalid'
+            });
+        }
+
+        const user = users[0];
+        const userId = user._id;
+        const link = 'localhost:6075/settings?userId=' + userId;
+
+        nodemailer.createTestAccount((err, account) => {
+            const htmlEmail = `
+            <h3>To reset your password follow the link and set a new password</h3>
+            <a href=${link}>Link to reset password</a>
+        `;
+            // create reusable transporter object using the default SMTP transport
+            let transporter = nodemailer.createTransport({
+                host: 'smtp.ethereal.email',
+                port: 587,
+                secure: false, // true for 465, false for other ports
+                auth: {
+                    user: 'jieg6ooadatp3tap@ethereal.email', // generated ethereal user
+                    pass: 'ZrsQcANEgRbR6x6cBc' // generated ethereal password
+                }
+            });
+
+            // setup email data with unicode symbols
+            let mailOptions = {
+                from: '"Support SurveyTool" <support@surveytool.com>', // sender address
+                to: email, // list of receivers
+                subject: 'Password Reset', // Subject line
+                text: 'Hello ' + username, // plain text body
+                html: htmlEmail // html body
+            };
+
+            // send mail with defined transport object
+            transporter.sendMail(mailOptions, (error, info) => {
+                if (error) {
+                    return console.log(error);
+                }
+                console.log('Message sent: %s', info.messageId);
+                // Preview only available when sending through an Ethereal account
+                console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+
+                // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
+                // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
+
+                res.status(200).send({
+                    success: true
+                });
+            });
+        });
+
+    });
+
   });
 
   app.delete('/api/account/delete', (req, res, next) => {

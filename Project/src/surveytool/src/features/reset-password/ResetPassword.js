@@ -6,10 +6,17 @@ import * as actions from './redux/actions';
 import{ Header } from './index';
 import Button from '@material-ui/core/Button';
 import { TextValidator, ValidatorForm } from 'react-material-ui-form-validator';
+import {setInStorage} from "../../utils/storage";
 
 export class ResetPassword extends Component {
+    constructor () {
+        super();
 
-  state = {}
+        this.state = {
+            email: '',
+            username: ''
+        }
+    }
 
   static propTypes = {
     resetPassword: PropTypes.object.isRequired,
@@ -18,21 +25,48 @@ export class ResetPassword extends Component {
 
     handleChangeMail = (event) => {
         const email = event.target.value;
-        this.setState({ email });
-    }
+        this.setState({ email: email });
+    };
 
     handleChangeUsername = (event) => {
         const username = event.target.value;
-        this.setState({ username });
-    }
+        this.setState({ username: username });
+    };
  
     handleSubmit = () => {
-        
-    }
+      if (this.state.username === '') {
+        alert('you have to enter your username');
+        return;
+      }
+      if (this.state.email === '') {
+          alert('you have to enter your email');
+          return;
+      }
+
+      fetch('/api/account/resetPassword', {
+        method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                username: this.state.username,
+                email: this.state.email
+            })
+      }).then(res => res.json())
+            .then(json => {
+                console.log('json', json);
+                if (json.success) {
+                   alert('Email was sent!');
+                } else {
+                    alert('something went wrong');
+                    this.setState({
+                        signInError: json.message,
+                    });
+                }
+            });
+    };
 
   render() {
-    const { email } = this.state;
-    const { username } = this.state;
     return (
       <div className="root" style={{height: '100%', width: '100%', backgroundColor: '#3366ff', position: 'fixed'}}>
 
@@ -55,7 +89,7 @@ export class ResetPassword extends Component {
                 margin="normal"
                 onChange={this.handleChangeUsername}
                 name="name"
-                value={username}
+                value={this.state.username}
                 validators={['required']}
                 errorMessages={['this field is required']}
             />
@@ -67,7 +101,7 @@ export class ResetPassword extends Component {
                 style={{paddingLeft: '28px'}}
                 onChange={this.handleChangeMail}
                 name="email"
-                value={email}
+                value={this.state.email}
                 validators={['required', 'isEmail']}
                 errorMessages={['this field is required', 'email is not valid']}
               />
