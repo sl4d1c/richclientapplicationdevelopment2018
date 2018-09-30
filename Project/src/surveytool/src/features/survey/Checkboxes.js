@@ -9,6 +9,7 @@ import Button from '@material-ui/core/Button';
 
 
 import update from 'react-addons-update';
+import TextField from "@material-ui/core/TextField/TextField";
 
 let state = {
     actives: 0
@@ -32,7 +33,6 @@ export default class Checkboxes extends Component {
     state = this.state;
   }
 
-
   componentDidMount() {
     if(state.actives === 0){
       this.initActives();
@@ -41,6 +41,7 @@ export default class Checkboxes extends Component {
 
   state = {
     actives: [],
+      set: false
   };
 
   initActives = () => {
@@ -52,7 +53,7 @@ export default class Checkboxes extends Component {
     this.setState({
       actives: buffer,
     });
-  }
+  };
 
   handleChange = index => event => {
     this.setState({ 
@@ -66,17 +67,18 @@ export default class Checkboxes extends Component {
         if (this.state.actives[i] === true) {
             answers.push(this.props.answers[i]);
         }
-    };
+    }
 
     let question = this.props.question;
+    let possibleAnswers = this.props.answers;
 
-    this.props.setData(question, answers);
+    this.props.setData(question, possibleAnswers, answers);
+    this.setState({set: true});
   };
 
   render() {
     return (
       <div className="survey-checkboxes">
-        
         <FormControl component="fieldset">
           <FormLabel component="legend">{this.props.question}</FormLabel>
           <FormGroup>
@@ -95,6 +97,21 @@ export default class Checkboxes extends Component {
           </FormGroup>
         </FormControl>
         <Button variant="contained" color="primary" onClick={() => this.onSetData()}>Set Answer</Button>
+          {this.state.set ? (
+              <TextField
+                  style={{marginTop: '2%'}}
+                  placeholder="Your answer was set"
+                  fullWidth="false"
+                  disabled="true"
+              />
+          ) : (
+              <TextField
+                  style={{marginTop: '2%'}}
+                  placeholder="Choose your answers"
+                  fullWidth="false"
+                  disabled="true"
+              />
+          )}
       </div>
     );
   }

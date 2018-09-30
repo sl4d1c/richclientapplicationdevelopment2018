@@ -8,14 +8,11 @@ import Stock from '../../images/student.jpg';
 import Success from '../../images/success.jpg';
 import Slider from "react-slick";
 
-
 export class Home extends Component {
   static propTypes = {
     home: PropTypes.object.isRequired,
     actions: PropTypes.object.isRequired,
   };
-
-
 
   render() {
      var settings = {
@@ -27,7 +24,6 @@ export class Home extends Component {
       infinite: true,
       arrows: false,
     };
-    
 
     return (
     <div style={{height: '100%', width: '100%', backgroundColor: '#3366ff', position: 'fixed'}}>

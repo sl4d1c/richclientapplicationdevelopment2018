@@ -28,12 +28,12 @@ module.exports = (app) => {
         title: title
       }, (err, previousSurvey) => {
         if (err) {
-          return res.send({
+          return res.status(404).send({
             success: false,
             message: 'Error: Server error'
           });
         } else if (previousSurvey.length > 0) {
-          return res.send({
+          return res.status(400).send({
             success: false,
             message: 'Error: Survey already exist.'
           });
@@ -48,12 +48,12 @@ module.exports = (app) => {
         newSurvey.data = data;
         newSurvey.save((err, user) => {
           if (err) {
-            return res.send({
+            return res.status(404).send({
               success: false,
               message: 'Error: Server error'
             });
           }
-          return res.send({
+          return res.status(201).send({
             success: true,
             message: 'created'
           });
@@ -61,38 +61,8 @@ module.exports = (app) => {
       });
     });
 
-    /*
-    app.post('/api/survey/getSurvey', (req, res, next) => {
-        const _id = req.body._id;
-        console.log(_id);
-        Survey.findById(_id)
-            .exec()
-            .then(doc => {
-                console.log(doc);
-                if(doc) {
-                    //res.status(200).json(doc)
-                    res.send({
-                        success: true,
-                        title: doc.title,
-                        data: doc.data
-                    });
-                }
-                else {
-                    res.status(404).json({
-                        message: 'no survey found',
-                        param: _id
-                    });
-                }
-            })
-            .catch(err => {
-                console.log(err);
-                res.status(500).json({error: err});
-            });
-    });
-    */
     app.get('/api/survey/getUserSurveys', (req, res, next) => {
         const userId = req.query.userId;
-        //console.log(userId);
         Survey.find({
             userId: userId
         })
@@ -113,8 +83,7 @@ module.exports = (app) => {
                         id++;
                     });
                     console.log(data);
-                    //res.status(200).json(doc)
-                    res.send({
+                    res.status(200).send({
                         success: true,
                         data: data
                     });
@@ -140,8 +109,7 @@ module.exports = (app) => {
             .then(doc => {
                 console.log(doc);
                 if(doc) {
-                    //res.status(200).json(doc)
-                    res.send({
+                    res.status(200).send({
                         success: true,
                         title: doc.title,
                         data: doc.data
@@ -173,8 +141,7 @@ module.exports = (app) => {
                     doc.forEach(function(element) {
                         data.push(element.data);
                     });
-                    //res.status(200).json(doc)
-                    res.send({
+                    res.status(200).send({
                         success: true,
                         data: data
                     });
@@ -201,7 +168,7 @@ module.exports = (app) => {
       } = body;
 
       if (!data) {
-        return res.send({
+        return res.status(400).send({
           success: false,
           message: 'Error: No Data.'
         });
@@ -216,15 +183,15 @@ module.exports = (app) => {
         newAnsweredSurvey.data = data;
         newAnsweredSurvey.save((err, user) => {
           if (err) {
-            return res.send({
+            return res.status(404).send({
               success: false,
               message: 'Error: Server error'
             });
           }
-          return res.send({
+          return res.status(200).send({
             success: true,
             message: 'saved'
           });
         });
     });
-}
+};

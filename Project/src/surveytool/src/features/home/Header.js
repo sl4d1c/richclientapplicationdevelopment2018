@@ -1,16 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-//import { bindActionCreators } from 'redux';
-//import { connect } from 'react-redux';
-//import * as actions from './redux/actions';
 
 import {
-  getFromStorage,
-  setInStorage,
+    getFromStorage,
+    setInStorage,
+    clearStorage
 } from '../../utils/storage';
-
-//import Parse from 'parse';
-//import ReactNative from 'react-native';
 
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -79,14 +74,7 @@ class Header extends React.Component {
               isLoading: false,
           });
       }
-  }
-
-
-
-  handleLogin = () => {
-    this.setState({ login: true });
-    this.handleCloseLogin();
-  }
+  };
 
   onSignIn = () => {
       const {
@@ -102,8 +90,7 @@ class Header extends React.Component {
           body: JSON.stringify({
               username: signInUsername,
               password: signInPassword
-          }),
-
+          })
       }).then(res => res.json())
           .then(json => {
               console.log('json', json);
@@ -121,10 +108,6 @@ class Header extends React.Component {
                   });
               }
           });
-  }
-
-  handleLogout = () => {
-    this.setState({ login: false });
   };
 
   handleClickOpenLogin = () => {
@@ -153,72 +136,44 @@ class Header extends React.Component {
     this.handleClickOpenRegister();
   };
 
-  getUsername = (event) => {
-    this.setState({signUpUsername: event.target.value})
-  }
+  onTextboxChangeSignInUsername = (event) => {
+      this.setState({
+          signInUsername: event.target.value
+      });
+  };
 
-  getPassword = (event) => {
-    this.setState({signUpPassword: event.target.value})
-  }
-
-  getEmail = (event) => {
-    this.setState({signUpEmail: event.target.value})
-  }
-
-  getRepPassword = (event) => {
-    this.setState({signUpPasswordVerify: event.target.value})
-  }
-
-  checkPasswords = () => {
-    if (this.state.password === this.state.repPassword) {
-      //this.handleOpenDebug();
-      console.log(this.state.signUpUserName);
-      console.log(this.state.signUpPassword);
-      console.log(this.state.signUpEmail);
-
-    }
-  }
-
-    onTextboxChangeSignInUsername = (event) => {
-        this.setState({
-            signInUsername: event.target.value
-        });
-    }
-
-    onTextboxChangeSignInPassword = (event) => {
-        this.setState({
-            signInPassword: event.target.value
-        });
-    }
+  onTextboxChangeSignInPassword = (event) => {
+      this.setState({
+          signInPassword: event.target.value
+      });
+  };
 
   onTextboxChangeSignUpEmail = (event) => {
     this.setState({
       signUpEmail: event.target.value,
     });
-  }
+  };
 
   onTextboxChangeSignUpUsername = (event) => {
     this.setState({
       signUpUsername: event.target.value,
     });
-  }
+  };
 
   onTextboxChangeSignUpPassword = (event) => {
     this.setState({
       signUpPassword: event.target.value,
     });
-  }
+  };
 
   onTextboxChangeSignUpPasswordVerify = (event) => {
-    //console.log(event.target.value);
     this.setState({
       signUpPasswordVerify: event.target.value,
     });
-  }
+  };
   
   onSignUp() {
     // Grab state
-
     if (this.state.signUpPassword === this.state.signUpPasswordVerify) {
       const {
         signUpEmail,
@@ -246,18 +201,19 @@ class Header extends React.Component {
             signUpEmail: '',
             signUpPassword: '',
           });
+          alert('Thanks! You registered successfully, now you can login');
           this.handleCloseRegister();
         } else {
           this.setState({
-            signUpError: json.message,   
+            signUpError: json.message,
           });
+          alert('Oops, something went wrong, please try again!');
         }
       });
     }
-
   }
 
-    logout() {
+  logout() {
       const obj = getFromStorage('the_main_app');
       if (obj && obj.token) {
         const {token} = obj;
@@ -271,6 +227,7 @@ class Header extends React.Component {
                     token: '',
                     login: false
                 });
+                clearStorage('the_main_app');
               }
             });
       }
@@ -292,7 +249,6 @@ class Header extends React.Component {
                 <Button color="inherit" onClick={this.handleClickOpenLogin}>
                   Login
                 </Button>
-
                 <Button color="inherit" onClick={this.handleClickOpenRegister}>
                   Register
                 </Button>
@@ -376,7 +332,6 @@ class Header extends React.Component {
                       type="email"
                       fullWidth
                       onChange={this.onTextboxChangeSignUpEmail}
-                      //onChange={this.getEmail}
                     />
                     <TextField
                       required
@@ -386,7 +341,6 @@ class Header extends React.Component {
                       type="password"
                       fullWidth
                       onChange={this.onTextboxChangeSignUpPassword}
-                      //onChange={this.getPassword}
                     />
                     <TextField
                       required
@@ -396,7 +350,6 @@ class Header extends React.Component {
                       type="password"
                       fullWidth
                       onChange={this.onTextboxChangeSignUpPasswordVerify}
-                      //onChange={this.getRepPassword}
                     />
                     <div style={{ paddingTop: '10px' }}>
                       <input name="stay" type="checkbox" checked={this.state.isGoing} />
@@ -423,11 +376,8 @@ class Header extends React.Component {
                 <Button color="inherit" href="create-survey">
                   Create Survey
                 </Button>
-
                 <Button color="inherit" href="my-surveys">My Surveys</Button>
-
                 <Button color="inherit" href="settings">Settings</Button>
-
                 <Button color="inherit" onClick={this.logout} href="home">
                   Logout
                 </Button>

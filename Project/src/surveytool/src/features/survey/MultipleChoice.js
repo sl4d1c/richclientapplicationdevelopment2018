@@ -6,6 +6,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
 
 let state = {
     value: 0
@@ -29,9 +30,9 @@ export default class MultipleChoice extends Component {
     state = this.state;
   }
 
-
   state = {
     value: this.props.answers[0],
+      set: false
   };
 
   handleChange = event => {
@@ -40,9 +41,11 @@ export default class MultipleChoice extends Component {
 
   onSetData = () => {
     let question = this.props.question;
+    let possibleAnswers = this.props.answers;
     let answers = [this.state.value];
 
-    this.props.setData(question, answers);
+    this.props.setData(question, possibleAnswers, answers);
+    this.setState({set:true})
   };
 
   render() {
@@ -66,6 +69,21 @@ export default class MultipleChoice extends Component {
           </RadioGroup>
             <Button variant="contained" color="primary" onClick={() => this.onSetData()}>Set Answer</Button>
         </FormControl>
+          {this.state.set ? (
+              <TextField
+                  style={{marginTop: '2%'}}
+                  placeholder="Your answer was set"
+                  fullWidth="false"
+                  disabled="true"
+              />
+          ) : (
+              <TextField
+                  style={{marginTop: '2%'}}
+                  placeholder="Choose one of the answers"
+                  fullWidth="false"
+                  disabled="true"
+              />
+          )}
       </div>
     );
   }

@@ -52,16 +52,17 @@ export class ResetPassword extends Component {
                 username: this.state.username,
                 email: this.state.email
             })
-      }).then(res => res.json())
-            .then(json => {
-                console.log('json', json);
-                if (json.success) {
-                   alert('Email was sent!');
-                } else {
-                    alert('something went wrong');
-                    this.setState({
-                        signInError: json.message,
-                    });
+      })
+          .then(res => res.json())
+          .then(json => {
+              console.log('json', json);
+              if (json.success) {
+                  alert('Email was sent!');
+              } else {
+                  alert('something went wrong');
+                  this.setState({
+                      signInError: json.message,
+                  });
                 }
             });
     };
@@ -69,20 +70,15 @@ export class ResetPassword extends Component {
   render() {
     return (
       <div className="root" style={{height: '100%', width: '100%', backgroundColor: '#3366ff', position: 'fixed'}}>
-
         <Header />
-
         <div style={{height: '94%', width: '60%', backgroundColor: '#ffffff', position: 'fixed', marginLeft: '20%'}}>
-
           <h1 style={{paddingLeft: '38%'}}>Send reset mail</h1>
-
           <ValidatorForm 
             style={{paddingTop: '30px', paddingLeft: '35%'}}
             ref="form"
             onSubmit={this.handleSubmit}
             onError={errors => console.log(errors)}
           >
-
             <div className="username">
               <label style={{paddingRight: '100px', align: 'bottom', display: ''}}>Username:</label>
               <TextValidator
@@ -94,7 +90,6 @@ export class ResetPassword extends Component {
                 errorMessages={['this field is required']}
             />
             </div>
-
             <div>
               <label style={{paddingRight: '100px'}}>E-Mail:</label>
               <TextValidator

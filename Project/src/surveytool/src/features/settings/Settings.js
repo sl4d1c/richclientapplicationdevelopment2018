@@ -64,8 +64,6 @@ export class Settings extends Component {
                           username: json.username,
                           email: json.email
                       });
-                  } else {
-                      //this.setState({});
                   }
               });
       }
@@ -94,18 +92,6 @@ export class Settings extends Component {
       }
   };
 
-  onTextBoxUsernameChange = (event) => {
-    this.setState({
-        username: event.target.value
-    });
-  };
-
-    onTextBoxPasswordChange = (event) => {
-        this.setState({
-            password: event.target.value
-        });
-    };
-
     onTextBoxPasswordRepeatChange = (event) => {
         this.setState({
             passwordRepeat: event.target.value
@@ -127,11 +113,17 @@ export class Settings extends Component {
                 body: JSON.stringify({
                     data: data,
                 }),
-            });
-            console.log('after fetch');
+            })
+                //.then(res => res.status()  json())
+                .then(res => {
+                    if (res.ok) {
+                        alert('New password was successfully set!');
+                    }});
+                console.log('after fetch');
+        } else {
+            alert('Passwords do not match!')
         }
     };
-
 
   render() {
     return (

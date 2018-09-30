@@ -7,20 +7,6 @@ import { Header, DropDown, Checkboxes, MultipleChoice, Text } from './index';
 
 import Button from '@material-ui/core/Button';
 
-let id = 0;
-
-function createData(question, type, answers) {
-  id += 1;
-  return { id, question, type, answers };
-}
-
-const data_bak = [
-  createData('Do you like Drop Down?', 'Drop Down', ['yes', 'no', "Don't know"]),
-  createData('Do you like Checkbox?', 'Checkbox', ['yes', 'no', 'maybe']),
-  createData('Do you like Text?', 'Text', ['yes', 'no']),
-  createData('Do you like Multiple Choice?', 'Multiple Choice', ['yes', 'no', 'maybe']),
-];
-
 export class Survey extends Component {
 
     constructor() {
@@ -31,46 +17,19 @@ export class Survey extends Component {
             submitData:[],
             title: '',
             data: [],
-            isLoading: true
+            isLoading: true,
+            surveyId: ''
         };
     };
-    /*
-    state= {
-      data:[],
-      currentIndex: 1,
-      id: 1,
-      submitData:[],
-      title: ''
-  };
-*/
   static propTypes = {
     survey: PropTypes.object.isRequired,
     actions: PropTypes.object.isRequired,
   };
 
   componentDidMount() {
-      /*fetch('/api/survey/getSurvey', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            _id: '5b9964dfdf1ff92ad23a88d0'
-          })
-      })
-          .then(res =>  res.json())
-          .then(json => {
-              if (json.success) {
-                  this.setState({
-                      data: json.data,
-                      title: json.title
-                  });
-          }});*/
       let url = window.location.href;
       let urlArray = url.split('=');
       let _id = urlArray[1];
-      let title = '';
-      let data = [];
 
       console.log('id => ', _id);
       fetch('/api/survey/getSurvey?_id=' + _id)
@@ -80,32 +39,11 @@ export class Survey extends Component {
                   this.setState({
                       data: json.data,
                       title: json.title,
-                      isLoading: false
+                      isLoading: false,
+                      surveyId: _id
                   });
               }});
-      //this.fillData(title, data);
-      console.log('fetched data => ', data);
-      console.log('static class data => ', data_bak);
-      //this.getData();
-
   };
-
-  getData = async () => {
-
-  };
-
-  fillData = (title, data) => {
-      this.setState({
-          data: data,
-          title: title,
-          isLoading: false
-      });
-  };
-  /*
-  state = {
-    currentIndex: 1,
-  };
-  */
 
   increaseCurrentIndex = () => {
     this.setState({ currentIndex: this.state.currentIndex + 1 });
@@ -114,48 +52,30 @@ export class Survey extends Component {
   decreaseCurrentIndex = () => {
     this.setState({ currentIndex: this.state.currentIndex - 1 });
   };
-  loadDb = () => {
-      fetch('/api/survey/getSurvey', {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-              _id: '5b9964dfdf1ff92ad23a88d0'
-          })
-      })
-          .then(res => res.json())
-          .then(json => {
-              if (json.success) {
-                  this.setState({
-                      data: json.data,
-                      title: json.title
-                  });
-              }});
-      console.log('from go => ',this.state.data)
-  };
-    go = () => {
-      this.loadDb();
-      console.log('static data => ',data_bak);
-    };
 
-    onAddData = (question, answers) => {
+    onAddData = (question, possibleAnswers, answers) => {
       let result = {
           id: this.state.id,
           question: question,
+          possibleAnswers: possibleAnswers,
           answers: answers
       };
 
       this.setState({
-          id: id++,
+          id: this.state.id++,
           submitData: [...this.state.submitData, result]
       });
     };
 
   finishSurvey = () => {
+      if (this.state.surveySaved) {
+          alert('You already answered this survey!');
+          return;
+      }
     const {
         submitData,
-        title
+        title,
+        surveyId
     } = this.state;
 
     // Post request to backend
@@ -166,7 +86,8 @@ export class Survey extends Component {
           },
           body: JSON.stringify({
               title: title,
-              data: submitData
+              data: submitData,
+              surveyId: surveyId
           })
       }).then(res => res.json())
           .then(json => {
@@ -176,6 +97,7 @@ export class Survey extends Component {
                       surveySaveError: json.message,
                       surveySaved: true
                   });
+                  alert('Your survey was saved, thank you very much!');
               } else {
                   this.setState({
                       surveySaveError: json.message,
@@ -190,7 +112,6 @@ export class Survey extends Component {
       } else {
           let addedQuestionsGoHere = this.state.data.map(data => {
               return (
-
                   <div>
                       {data.type === 'Drop Down' && this.state.currentIndex === data.id ? (
                           <div style={{ marginTop: '2%' }}>
@@ -199,7 +120,6 @@ export class Survey extends Component {
                       ) : (
                           <div />
                       )}
-
                       {data.type === 'Checkbox' && this.state.currentIndex === data.id ? (
                           <div style={{ marginTop: '2%' }}>
                               <Checkboxes question={data.question} answers={data.answers} setData={this.onAddData} />
@@ -207,7 +127,6 @@ export class Survey extends Component {
                       ) : (
                           <div />
                       )}
-
                       {data.type === 'Text' && this.state.currentIndex === data.id ? (
                           <div style={{ marginTop: '2%' }}>
                               <Text question={data.question} setData={this.onAddData} />
@@ -215,7 +134,6 @@ export class Survey extends Component {
                       ) : (
                           <div />
                       )}
-
                       {data.type === 'Multiple Choice' && this.state.currentIndex === data.id ? (
                           <div style={{ marginTop: '2%' }}>
                               <MultipleChoice question={data.question} answers={data.answers} setData={this.onAddData} />
@@ -254,8 +172,7 @@ export class Survey extends Component {
                           ) : (
                               <div />
                           )}
-
-                          {this.state.currentIndex > 1 && this.state.currentIndex < id ? (
+                          {this.state.currentIndex > 1 && this.state.currentIndex < this.state.data.length ? (
                               <div>
                                   <Button
                                       onClick={this.increaseCurrentIndex}
@@ -277,9 +194,7 @@ export class Survey extends Component {
                           ) : (
                               <div />
                           )}
-
-
-                          {this.state.currentIndex === id ? (
+                          {this.state.currentIndex === this.state.data.length ? (
                               <div>
                                   <Button
                                       onClick={this.decreaseCurrentIndex}
@@ -301,7 +216,6 @@ export class Survey extends Component {
                           ) : (
                               <div />
                           )}
-
                       </div>
                   </div>
               </div>

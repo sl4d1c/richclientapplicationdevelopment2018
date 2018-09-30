@@ -13,6 +13,7 @@
   "author": "Artem",
   "license": "MIT",
   "devDependencies": {
+    "dotenv": "^6.0.0",
     "nodemon": "^1.14.6"
   },
   "dependencies": {

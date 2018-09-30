@@ -27,33 +27,6 @@ const styles = theme => ({
   },
 });
 
-let id = 0;
-
-function createData(name, duration, answerLink, results) {
-  id += 1;
-  return { id, name, duration, answerLink, results};
-}
-
-function calculateCurrentDuration(){
-  let now = new Date();
-  return now.getDate() + '.' + (now.getMonth() + 1) + '.' + now.getFullYear();
-}
-
-function giveResultLink(){
-  return "return link from server";
-}
-
-function giveAnswerLink() {
-  return "return link from server";
-}
-
-const data_bak = [
-  createData('Survey on Frozen yoghurt', calculateCurrentDuration(), giveAnswerLink(), giveResultLink()),
-  createData('Survey on Ice cream sandwich', calculateCurrentDuration(), giveAnswerLink(), giveResultLink()),
-  createData('Survey on Cupcakes', calculateCurrentDuration(), giveAnswerLink(), giveResultLink()),
-  createData('Survey on Gingerbread', calculateCurrentDuration(), giveAnswerLink(), giveResultLink()),
-];
-
 export class MySurveys extends Component {
     constructor() {
         super();
@@ -69,21 +42,6 @@ export class MySurveys extends Component {
         mySurveys: PropTypes.object.isRequired,
         actions: PropTypes.object.isRequired,
     };
-
-  /*state = {
-    token:'',
-      userId:'',
-      data: []
-  };*/
-
-  /*
-  componentDidMount() {
-    this.checkToken();
-    this.loadData();
-
-    console.log('data ', this.state.data);
-    console.log('static ', data_bak)
-  };*/
 
   componentDidMount() {
       const obj = getFromStorage('the_main_app');
@@ -125,60 +83,12 @@ export class MySurveys extends Component {
       }
   };
 
-  loadData = () => {
-      let data = [];
-      const obj = getFromStorage('the_main_app');
-      if (obj && obj.userId) {
-          const { userId } = obj;
-          console.log(userId);
-          fetch('/api/survey/getUserSurveys?userId=' + userId)
-              .then(res =>  res.json())
-              .then(json => {
-                  if (json.success) {
-                      /*this.setState({
-                          data: json.data
-                      });*/
-                      data = json.data
-                  }
-              });
-      }
-
-      console.log(data);
-      this.setData(data);
-  };
-
   setData = (data) => {
     this.setState({
         data: data,
         isLoading: false
     })
   };
-
-  checkToken = () => {
-      const obj = getFromStorage('the_main_app');
-      if (obj && obj.token) {
-          const { token } = obj;
-          // Verify token
-          fetch('/api/account/verify?token=' + token)
-              .then(res => res.json())
-              .then(json => {
-                  if (json.success) {
-                      this.setState({
-                          token,
-                          userId: json.userId
-                      });
-                  } else {
-                      this.setState({
-                      });
-                  }
-              });
-      } else {
-          this.setState({
-              isLoading: false,
-          });
-      }
-  };
-
 
   render() {
       if (this.state.isLoading) {

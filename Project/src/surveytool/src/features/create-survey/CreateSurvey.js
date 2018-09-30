@@ -3,18 +3,12 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actions from './redux/actions';
 import{ Header, Question } from './index';
-
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import TextField from "@material-ui/core/TextField";
 import {getFromStorage} from "../../utils/storage";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
 
 export class CreateSurvey extends Component {
     constructor() {
@@ -90,6 +84,7 @@ export class CreateSurvey extends Component {
                       surveySaveError: json.message,
                       surveySaved: true
                   });
+                  alert('survey was create, you can find it in "my-survey"')
               } else {
                   this.setState({
                       surveySaveError: json.message,
@@ -103,7 +98,9 @@ export class CreateSurvey extends Component {
     this.setState({
       data: result,
     });
-  }
+
+    this.removeFilledQuestion(key);
+  };
 
   addDropDownQuestion = () => {
     let new_added_dropdown = {
@@ -111,7 +108,7 @@ export class CreateSurvey extends Component {
         key: this.state.key
     };
     this.addToData(new_added_dropdown);    
-  }
+  };
 
   addMultipleChoiceQuestion = () => {
     let new_added_multiple_choice = {
@@ -119,7 +116,7 @@ export class CreateSurvey extends Component {
         key: this.state.key
     };
     this.addToData(new_added_multiple_choice);    
-  }
+  };
 
   addCheckboxQuestion = () => {
     let new_added_checkbox = {
@@ -127,7 +124,7 @@ export class CreateSurvey extends Component {
         key: this.state.key
     };
     this.addToData(new_added_checkbox);    
-  }
+  };
 
 
   addTextQuestion = () => {
@@ -136,18 +133,18 @@ export class CreateSurvey extends Component {
         key: this.state.key
     };
     this.addToData(new_added_text); 
-  }
+  };
 
   addToData = (newlyAdded) => {
     this.setState({ 
       data: [...this.state.data, newlyAdded],
       key: this.state.key + 1,
     });
-  }
+  };
 
   onTextboxChangeTitle = (event) => {
     this.setState({title: event.target.value});
-  }
+  };
 
   onAddAnswerData = (answerData) => {
       console.log('answerDataParent => ', answerData);
@@ -159,13 +156,12 @@ export class CreateSurvey extends Component {
       console.log('submitData => ',this.state.submitData)
   };
 
-  handleCloseTitleDialog = () => {
-      this.setState({titleDialog: false})
-  };
-
-  onSetTitle = () => {
-      this.handleCloseTitleDialog();
-  };
+  removeFilledQuestion = (key) => {
+      let result = this.state.submitData.filter( (data) => data.id !== key);
+      this.setState({
+          submitData: result,
+      });
+    };
 
   render() {
     let addedQuestionsGoHere = this.state.data.map( (data) => {
@@ -175,7 +171,8 @@ export class CreateSurvey extends Component {
               objId={this.state.objId}
               type={data.type}
               removeQuestion={this.removeQuestion}
-             setData={this.onAddAnswerData}
+              setData={this.onAddAnswerData}
+              removeFilledQuestion={this.removeFilledQuestion}
           />
         )
     });
@@ -186,25 +183,20 @@ export class CreateSurvey extends Component {
         <div style={{height: '100%', width: '60%', backgroundColor: '#ffffff', position: 'fixed', marginLeft: '20%'}}>
           <AppBar position="static" style={{ backgroundColor: '#919191' }}>
             <Toolbar>
-            
             <Button color="inherit" onClick={this.addDropDownQuestion}>
                   Drop Down
             </Button>
-
             <Button color="inherit" onClick={this.addTextQuestion}>
                   Text
             </Button>
-
             <Button color="inherit" onClick={this.addMultipleChoiceQuestion}>
               Multiple Choice
             </Button>
-
             <Button color="inherit" onClick={this.addCheckboxQuestion}>
                   Checkbox
             </Button>
-
             <Typography style={{ flex: '1' }} />
-            <Button color="inherit" onClick={this.submitSurvey}>
+            <Button color="inherit" href='home' onClick={this.submitSurvey}>
                   Submit
             </Button>
             </Toolbar>
@@ -223,9 +215,7 @@ export class CreateSurvey extends Component {
               {addedQuestionsGoHere}
           </div>
             <div style={{display:'none'}}>
-                <Question
-                //setData={() => this.onAddAnswerData()}
-                />
+                <Question/>
             </div>
         </div>
       </div>

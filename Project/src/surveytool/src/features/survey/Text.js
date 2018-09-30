@@ -28,6 +28,7 @@ export default class Text extends Component {
 
   state = {
     text: "",
+      set: false
   };
 
   changeText = (event) => {
@@ -36,9 +37,11 @@ export default class Text extends Component {
 
   onSetData = () => {
     let question = this.props.question;
+    let possibleAnswers = [];
     let answers = [this.state.text];
 
-    this.props.setData(question, answers);
+    this.props.setData(question, possibleAnswers, answers);
+    this.setState({set: true});
   };
 
   render() {
@@ -47,6 +50,21 @@ export default class Text extends Component {
         {this.props.question}<br />
         <TextField fullWidth="true" value={this.state.text} onChange={this.changeText}/>
           <Button variant="contained" color="primary" onClick={() => this.onSetData()}>Set Answer</Button>
+          {this.state.set ? (
+              <TextField
+                  style={{marginTop: '2%'}}
+                  placeholder="Your answer was set"
+                  fullWidth="false"
+                  disabled="true"
+              />
+          ) : (
+              <TextField
+                  style={{marginTop: '2%'}}
+                  placeholder="Type your answer"
+                  fullWidth="false"
+                  disabled="true"
+              />
+          )}
       </div>
     );
   }

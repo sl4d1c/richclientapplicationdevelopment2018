@@ -4,6 +4,7 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const nodemailer = require('nodemailer');
+require('dotenv').config();
 
 
 module.exports = (app) => {
@@ -21,19 +22,19 @@ module.exports = (app) => {
     } = body;
 
     if (!username) {
-      return res.send({
+      return res.status(400).send({
         success: false,
         message: 'Error: Username cannot be blank.'
       });
     }
     if (!password) {
-      return res.send({
+      return res.status(400).send({
         success: false,
         message: 'Error: Password cannot be blank.'
       });
     }
     if (!email) {
-      return res.send({
+      return res.status(400).send({
         success: false,
         message: 'Error: Email cannot be blank.'
       })
@@ -49,12 +50,12 @@ module.exports = (app) => {
       username: username
     }, (err, previousUsers) => {
       if (err) {
-        return res.send({
+        return res.status(404).send({
           success: false,
           message: 'Error: Server error'
         });
       } else if (previousUsers.length > 0) {
-        return res.send({
+        return res.status(404).send({
           success: false,
           message: 'Error: Account already exist.'
         });
@@ -69,12 +70,12 @@ module.exports = (app) => {
       newUser.password = newUser.generateHash(password);
       newUser.save((err, user) => {
         if (err) {
-          return res.send({
+          return res.status(404).send({
             success: false,
             message: 'Error: Server error'
           });
         }
-        return res.send({
+        return res.status(200).send({
           success: true,
           message: 'Signed up'
         });
@@ -93,33 +94,30 @@ module.exports = (app) => {
     } = body;
 
     if (!username) {
-      return res.send({
+      return res.status(400).send({
         success: false,
         message: 'Error: Email cannot be blank.'
       });
     }
     if (!password) {
-      return res.send({
+      return res.status(400).send({
         success: false,
         message: 'Error: Password cannot be blank.'
       });
     }
-
-    //email = email.toLowerCase();
-    //email = email.trim();
 
     User.find({
       username: username
     }, (err, users) => {
       if (err) {
         console.log('err 2:', err);
-        return res.send({
+        return res.status(404).send({
           success: false,
           message: 'Error: server error'
         });
       }
       if (users.length != 1) {
-        return res.send({
+        return res.status(404).send({
           success: false,
           message: 'Error: Invalid'
         });
@@ -127,7 +125,7 @@ module.exports = (app) => {
 
       const user = users[0];
       if (!user.validPassword(password)) {
-        return res.send({
+        return res.status(403).send({
           success: false,
           message: 'Error: Invalid'
         });
@@ -139,12 +137,12 @@ module.exports = (app) => {
       userSession.save((err, doc) => {
         if (err) {
           console.log(err);
-          return res.send({
+          return res.status(404).send({
             success: false,
             message: 'Error: server error'
           });
         }
-        return res.send({
+        return res.status(200).send({
           success: true,
           message: 'Valid sign in',
           token: doc._id,
@@ -158,7 +156,6 @@ module.exports = (app) => {
     // Get the token
     const { query } = req;
     const { token } = query;
-    // ?token=test
 
     // Verify the token is one of a kind and it's not deleted.
 
@@ -168,19 +165,19 @@ module.exports = (app) => {
     }, (err, sessions) => {
       if (err) {
         console.log(err);
-        return res.send({
+        return res.status(404).send({
           success: false,
           message: 'Error: Server error'
         });
       }
       if (sessions.length != 1) {
-        return res.send({
+        return res.status(401).send({
           success: false,
           message: 'Error: Invalid'
         });
       } else {
           //console.log(sessions[0].userId);
-          return res.send({
+          return res.status(200).send({
           success: true,
           message: 'Good',
             userId: sessions[0].userId
@@ -207,40 +204,18 @@ module.exports = (app) => {
     }, null, (err, sessions) => {
       if (err) {
         console.log(err);
-        return res.send({
+        return res.status(404).send({
           success: false,
           message: 'Error: Server error'
         });
       }
 
-      return res.send({
+      return res.status(200).send({
         success: true,
         message: 'Good'
       });
     });
   });
-
-  /*router.get('/:userId', (req, res, next) => {
-    const id = req.params.userId;
-    User.findById(id)
-      .exec()
-      .then(doc => {
-        console.log(doc);
-        if(doc) {
-          res.status(200).json(doc)
-        }
-        else {
-          res.status(404).json({
-            message: 'no user found',
-            param: id
-        });
-        }
-      })
-      .catch(err => {
-        console.log(err);
-        res.status(500).json({error: err});
-      });
-  });*/
 
   app.get('/api/getUser', (req, res, next) => {
     const _id = req.query.userId;
@@ -251,7 +226,7 @@ module.exports = (app) => {
         console.log(doc);
         if(doc) {
           //res.status(200).json(doc);
-            res.send({
+            res.status(200).send({
                 success: true,
                 username: doc.username,
                 email: doc.email
@@ -270,21 +245,6 @@ module.exports = (app) => {
       });
   });
 
-  /*router.get('/', (req, res, next) => {
-    User.find()
-    .exec()
-    .then(docs => {
-      console.log(docs);
-      res.status(200).json(docs);
-    })
-    .catch(err => {
-      console.log(err);
-      res.status(500).json({
-        error: err
-      });
-    });
-  });*/
-
   app.get('/api/getUsers', (req, res, next) => {
     User.find()
     .exec()
@@ -299,30 +259,6 @@ module.exports = (app) => {
       });
     });
   });
-
-  /*router.post('/', (req, res, next) => {
-    const user = new User({
-      _id: new mongoose.Types.ObjectId(),
-      firstName: req.body.firstName,
-      lastName: req.body.lastName
-    });
-    console.log(user);
-    user
-    .save()
-    .then(result => {
-      console.log(result);
-      res.status(201).json({
-        message: 'Handling POST requests to /user',
-        createdUser: result
-      })
-    })
-    .catch(err => {
-      console.log(err);
-      res.status(500).json({
-        error: err
-      })
-    });
-})*/
 
   app.post('/api/addUser', (req, res, next) => {
     const user = new User({
@@ -368,7 +304,7 @@ module.exports = (app) => {
               res.status(500).send();
             } else {
               console.log(updatedUser);
-              res.status(400).send()
+              res.status(200).send();
             }
           });
         }
@@ -389,7 +325,7 @@ module.exports = (app) => {
             });
         }
         if (users.length != 1) {
-            return res(403).send({
+            return res.status(403).send({
                 success: false,
                 message: 'Error: Invalid'
             });
@@ -410,8 +346,8 @@ module.exports = (app) => {
                 port: 587,
                 secure: false, // true for 465, false for other ports
                 auth: {
-                    user: 'jieg6ooadatp3tap@ethereal.email', // generated ethereal user
-                    pass: 'ZrsQcANEgRbR6x6cBc' // generated ethereal password
+                    user: process.env.ETHEREAL_USER, // generated ethereal user
+                    pass: process.env.ETHEREAL_PASS // generated ethereal password
                 }
             });
 
@@ -433,9 +369,6 @@ module.exports = (app) => {
                 // Preview only available when sending through an Ethereal account
                 console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
 
-                // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
-                // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
-
                 res.status(200).send({
                     success: true
                 });
@@ -448,7 +381,6 @@ module.exports = (app) => {
 
   app.delete('/api/account/delete', (req, res, next) => {
     const userName = req.body.userName;
-
     User.delete(userName);
   });
 };
